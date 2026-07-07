@@ -1,1 +1,813 @@
+<!DOCTYPE html>
+<html lang="sr-Latn-ME">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173f33">
+  <meta name="description" content="Digitalni meni restorana Katun Maja Karanfil u dolini Grebaje.">
+  <title>Katun Maja Karanfil · Meni</title>
+  <style>
+    :root{--pine:#173f33;--pine2:#0d2b22;--sage:#e9f0e9;--paper:#fbfaf6;--cream:#f3eee3;--gold:#bd914e;--ink:#17221e;--muted:#65716b;--line:#e8e0d4;--card:#fff;--shadow:0 12px 30px rgba(21,52,40,.08);}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+    button,input{font:inherit} button{cursor:pointer}
+    .app{min-height:100vh;max-width:720px;margin:auto;background:var(--paper);box-shadow:0 0 45px rgba(33,48,39,.07)}
+    .top{position:sticky;top:0;z-index:30;padding:12px 16px 10px;background:rgba(251,250,246,.94);border-bottom:1px solid rgba(232,224,212,.85);backdrop-filter:blur(16px)}
+    .toprow{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:9px;min-width:0}
+    .mark{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:var(--pine);color:#fff;font-size:18px;box-shadow:0 5px 13px rgba(23,63,51,.21)}
+    .brand strong{display:block;font-size:11px;line-height:1.1;letter-spacing:.09em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .brand span{display:block;margin-top:3px;color:var(--muted);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
 
+    main{padding:0 16px 36px}
+    .hero{position:relative;margin:0 -16px;padding:27px 20px 22px;overflow:hidden;color:#fff;background:linear-gradient(128deg,#0b2d23,#1e5947)}
+    .hero::after{content:"";position:absolute;inset:auto -6% -1px -6%;height:89px;opacity:.7;background:#0c3025;clip-path:polygon(0 100%,0 77%,13% 62%,23% 76%,36% 32%,47% 70%,56% 42%,66% 70%,79% 23%,92% 70%,100% 50%,100% 100%)}
+    .hero > *{position:relative;z-index:1}
+    .eyebrow{margin:0 0 9px;color:#efcd85;font-size:10px;font-weight:900;letter-spacing:.18em;text-transform:uppercase}
+    .hero h1{max-width:420px;margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(30px,9vw,43px);font-weight:500;letter-spacing:-.045em;line-height:.98}
+    .hero p:last-child{margin:11px 0 0;max-width:470px;color:rgba(255,255,255,.88);font-size:13px;line-height:1.46}
+
+    .instagram-live{position:relative;margin:15px 0 0;overflow:hidden;border:1px solid #d7dcd4;border-radius:20px;background:#fff;box-shadow:0 12px 28px rgba(23,63,51,.09)}
+    .instagram-live-head{position:relative;overflow:hidden;padding:17px 16px 15px;color:#fff;background:linear-gradient(129deg,#10372b 0%,#1c5a45 58%,#94614a 155%)}
+    .instagram-live-head::before{content:"";position:absolute;right:-31px;top:-45px;width:135px;height:135px;border:1px solid rgba(240,207,139,.4);border-radius:50%;box-shadow:0 0 0 16px rgba(240,207,139,.07),0 0 0 34px rgba(240,207,139,.045)}
+    .instagram-live-head::after{content:"";position:absolute;left:-26px;bottom:-48px;width:175px;height:90px;opacity:.35;background:#0a2d23;clip-path:polygon(0 100%,0 68%,15% 49%,27% 66%,45% 21%,57% 56%,70% 35%,83% 62%,100% 18%,100% 100%)}
+    .instagram-live-head > *{position:relative;z-index:1}
+    .instagram-kicker{display:flex;align-items:center;gap:6px;margin:0 0 8px;color:#f0cf8b;font-size:9.5px;font-weight:950;letter-spacing:.14em;text-transform:uppercase}
+    .instagram-kicker::before{content:"";display:block;width:7px;height:7px;border-radius:50%;background:#f0cf8b;box-shadow:0 0 0 4px rgba(240,207,139,.15)}
+    .instagram-live h2{max-width:360px;margin:0;font-family:Georgia,"Times New Roman",serif;font-size:22px;font-weight:500;letter-spacing:-.025em;line-height:1.05}
+    .instagram-live-copy{max-width:455px;margin:9px 0 14px;color:rgba(255,255,255,.86);font-size:11.5px;line-height:1.48}
+    .instagram-link{display:inline-flex;align-items:center;gap:8px;min-height:38px;padding:9px 11px;border:1px solid rgba(255,255,255,.32);border-radius:11px;background:rgba(255,255,255,.13);color:#fff;text-decoration:none;font-size:11px;font-weight:900;transition:transform .18s ease,background .18s ease}
+    .instagram-link:hover{background:rgba(255,255,255,.2)}
+    .instagram-link:active{transform:scale(.985)}
+    .instagram-link svg{width:15px;height:15px;flex:0 0 auto}
+    .instagram-feed-wrap{padding:12px 0 13px;background:#fff}
+    .instagram-feed{display:flex;gap:9px;padding:0 13px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+    .instagram-feed::-webkit-scrollbar{display:none}
+    .instagram-card{position:relative;display:block;flex:0 0 136px;aspect-ratio:4/5;overflow:hidden;border-radius:13px;background:#e8eee7;scroll-snap-align:start;color:#fff;text-decoration:none;box-shadow:0 5px 13px rgba(17,42,31,.12)}
+    .instagram-card img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .28s ease}
+    .instagram-card:hover img{transform:scale(1.035)}
+    .instagram-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,23,16,0) 54%,rgba(9,26,18,.62) 100%);pointer-events:none}
+    .instagram-card-label{position:absolute;z-index:1;right:7px;bottom:7px;display:inline-flex;align-items:center;gap:4px;padding:4px 6px;border:1px solid rgba(255,255,255,.35);border-radius:7px;background:rgba(12,27,20,.46);backdrop-filter:blur(7px);font-size:8.5px;font-weight:900;letter-spacing:.05em;text-transform:uppercase}
+    .instagram-card-play{position:absolute;z-index:1;top:8px;left:8px;display:grid;place-items:center;width:27px;height:27px;border:1px solid rgba(255,255,255,.42);border-radius:50%;background:rgba(9,26,18,.38);backdrop-filter:blur(7px);font-size:10px}
+    .instagram-card-caption{position:absolute;z-index:1;right:8px;bottom:8px;left:8px;overflow:hidden;color:#fff;font-size:10px;font-weight:800;line-height:1.25;text-overflow:ellipsis;white-space:nowrap}
+    .instagram-feed-empty{display:flex;align-items:center;gap:10px;min-width:calc(100% - 26px);padding:10px 11px;border:1px dashed #d8cfbd;border-radius:13px;background:#fbfaf6;color:#5d6b63}
+    .instagram-feed-empty i{display:grid;place-items:center;width:35px;height:35px;flex:0 0 auto;border-radius:10px;background:#edf4ed;color:#38684a;font-style:normal;font-size:16px}
+    .instagram-feed-empty strong{display:block;color:#1d3027;font-size:11.5px}
+    .instagram-feed-empty span{display:block;margin-top:3px;font-size:10.5px;line-height:1.3}
+    .instagram-feed-skeleton{flex:0 0 136px;aspect-ratio:4/5;border-radius:13px;background:linear-gradient(110deg,#edf0ec 8%,#f8f8f5 18%,#edf0ec 33%);background-size:220% 100%;animation:instagramShimmer 1.35s linear infinite}
+    .instagram-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 14px;color:#738078;font-size:9.5px;font-weight:780}
+    .instagram-foot span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .instagram-foot a{flex:0 0 auto;color:#2f6746;font-size:9.5px;font-weight:900;text-decoration:none}
+    @keyframes instagramShimmer{to{background-position:-220% 0}}
+    .intro{display:flex;gap:9px;align-items:flex-start;margin-top:15px;padding:12px 13px;border-radius:15px;border:1px solid var(--line);background:#fff;box-shadow:0 6px 16px rgba(38,53,43,.035)}
+    .intro i{font-style:normal;display:grid;place-items:center;width:25px;height:25px;flex:0 0 auto;border-radius:8px;background:#edf4ed;color:var(--pine);font-size:14px}
+    .intro p{margin:0;color:#637069;font-size:11.5px;line-height:1.45}
+    .intro strong{color:var(--pine)}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin:24px 1px 12px}
+    .section-head h2{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:24px;font-weight:500;letter-spacing:-.025em;color:var(--pine2)}
+    .section-head span{color:var(--muted);font-size:11px;font-weight:800}
+    .recommendations{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+    .recommendation{min-height:122px;padding:12px 11px;text-align:left;border:1px solid #e1dacb;border-radius:17px;background:linear-gradient(180deg,#fff,#fbf8f1);box-shadow:0 5px 16px rgba(39,50,42,.035);color:var(--ink)}
+    .recommendation:active,.category:active{transform:scale(.985)}
+    .recommendation em{display:block;margin-bottom:9px;color:var(--gold);font-size:17px;font-style:normal}
+    .recommendation small{display:block;color:#768078;font-size:9px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+    .recommendation strong{display:block;margin-top:6px;font-size:12px;line-height:1.22}
+    .recommendation b{display:block;margin-top:8px;color:var(--pine);font-size:13px}
+    .category-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .category{display:flex;align-items:center;gap:10px;min-height:72px;padding:11px;border:1px solid var(--line);border-radius:16px;background:#fff;text-align:left;box-shadow:0 4px 13px rgba(38,53,43,.025)}
+    .category .emoji{display:grid;place-items:center;flex:0 0 auto;width:38px;height:38px;border-radius:12px;background:var(--sage);font-size:19px}
+    .category strong{display:block;font-size:12px;line-height:1.2;color:var(--pine2)}
+    .category small{display:block;margin-top:4px;color:#78827d;font-size:10px;font-weight:750}
+    .hidden{display:none!important}
+    .backrow{display:flex;align-items:center;gap:11px;margin:22px 0 13px}
+    .back{display:grid;place-items:center;flex:0 0 auto;width:36px;height:36px;border:1px solid var(--line);border-radius:11px;background:#fff;color:var(--pine);font-size:19px}
+    .backrow h2{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:26px;font-weight:500;letter-spacing:-.03em;line-height:1.08;color:var(--pine2)}
+    .backrow p{margin:3px 0 0;color:var(--muted);font-size:11px;font-weight:780}
+    .group{margin-top:22px}
+    .group:first-child{margin-top:0}
+    .group h3{margin:0 2px 9px;color:#5b6f64;font-size:10.5px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+    .items{display:grid;gap:7px}
+    .dish{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden;box-shadow:0 4px 12px rgba(31,50,39,.022)}
+    .dish-top{width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto 20px;gap:9px;align-items:center;border:0;background:transparent;padding:13px 12px;text-align:left;color:inherit}
+    .dish-name{min-width:0}
+    .dish-name strong{display:block;color:#15261e;font-size:13.5px;line-height:1.23}
+    .dish-name small{display:block;margin-top:4px;color:#7b857f;font-size:10.5px;line-height:1.2}
+    .price{color:var(--pine);font-size:13.5px;font-weight:900;white-space:nowrap}
+    .chevron{color:#83918a;font-size:15px;text-align:center;transition:transform .18s}
+    .dish.open .chevron{transform:rotate(180deg)}
+    .detail{display:none;padding:0 12px 13px;border-top:1px dashed #e4ddcf;color:#64716a;font-size:11.5px;line-height:1.47}
+    .dish.open .detail{display:block;padding-top:10px}
+    .badge{display:inline-block;margin-top:7px;padding:4px 6px;border-radius:7px;background:#eff4ea;color:#38684a;font-size:9.5px;font-weight:900;letter-spacing:.04em}
+    .search-title{margin:23px 0 12px;font-family:Georgia,"Times New Roman",serif;font-size:25px;font-weight:500;color:var(--pine2)}
+    .search-section{margin:20px 0 0}
+    .search-section h3{margin:0 2px 8px;color:#5b6f64;font-size:10.5px;font-weight:900;letter-spacing:.11em;text-transform:uppercase}
+    .empty{margin-top:24px;padding:25px 18px;border:1px dashed #d8cfbd;border-radius:17px;background:#fff;text-align:center;color:var(--muted)}
+    .empty i{display:block;font-style:normal;font-size:26px;margin-bottom:9px}
+    .empty strong{display:block;color:var(--pine2);font-size:15px}
+    .empty p{margin:7px 0 0;font-size:12px;line-height:1.45}
+    .stay-card{position:relative;overflow:hidden;margin-top:28px;padding:24px 18px 18px;border-radius:26px;background:linear-gradient(126deg,#07261d 0%,#0b4635 54%,#0e6a4e 120%);color:#fff;box-shadow:0 16px 34px rgba(10,49,37,.18)}
+    .stay-card::before{content:"";position:absolute;inset:auto -12% -2px -8%;height:88px;opacity:.28;background:#08291f;clip-path:polygon(0 100%,0 76%,10% 60%,20% 74%,32% 36%,44% 68%,55% 42%,66% 72%,79% 24%,90% 64%,100% 48%,100% 100%)}
+    .stay-card > *{position:relative;z-index:1}
+    .stay-badge{margin:0 0 10px;color:#e4efe9;font-size:10px;font-weight:950;letter-spacing:.14em;text-transform:uppercase}
+    .stay-title{max-width:340px;margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(30px,7.4vw,48px);font-weight:600;line-height:.96;letter-spacing:-.045em}
+    .stay-copy{max-width:520px;margin:14px 0 16px;color:rgba(255,255,255,.88);font-size:12px;line-height:1.5}
+    .stay-actions{display:flex;flex-wrap:wrap;gap:10px}
+    .stay-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;min-width:124px;padding:0 16px;border-radius:16px;text-decoration:none;font-size:12px;font-weight:950;letter-spacing:.01em;transition:transform .18s ease,opacity .18s ease}
+    .stay-btn:active{transform:scale(.985)}
+    .stay-btn-phone{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.1);color:#fff;backdrop-filter:blur(8px)}
+    .stay-btn-light{background:#fff;color:#2f3c37;border:1px solid rgba(255,255,255,.16)}
+    .stay-btn-whatsapp{background:#2ee65d;color:#0f2b19;border:1px solid rgba(46,230,93,.14)}
+    .stay-icon{position:absolute;top:26px;right:22px;color:rgba(226,243,233,.16);font-size:60px;line-height:1;pointer-events:none}
+    footer{margin-top:28px;padding:18px 2px 4px;text-align:center;color:#849089;font-size:10px;font-weight:780;letter-spacing:.05em;text-transform:uppercase}
+    @media (min-width:520px){.category-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.recommendations{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media (max-width:370px){.recommendation{padding:10px}.recommendation strong{font-size:11px}.hero{padding-left:16px;padding-right:16px}.top{padding-left:12px;padding-right:12px}main{padding-left:12px;padding-right:12px}.hero{margin-left:-12px;margin-right:-12px}}
+
+    /* Full language picker */
+    .language-open{display:flex;align-items:center;gap:6px;max-width:146px;min-height:34px;padding:6px 9px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--pine);font-size:10.5px;font-weight:900;letter-spacing:.02em;white-space:nowrap}
+    .language-open .language-current{min-width:0;overflow:hidden;text-overflow:ellipsis}
+    .language-open .language-chevron{font-size:13px;line-height:1;color:#78877f}
+    .language-overlay{position:fixed;inset:0;z-index:100;display:flex;align-items:flex-end;padding:0;background:rgba(9,25,19,.42);opacity:0;visibility:hidden;transition:opacity .2s ease,visibility .2s ease}
+    .language-overlay.open{opacity:1;visibility:visible}
+    .language-sheet{width:min(720px,100%);max-height:min(82vh,690px);padding:9px 16px calc(18px + env(safe-area-inset-bottom));overflow:auto;border-radius:23px 23px 0 0;background:var(--paper);box-shadow:0 -15px 45px rgba(12,35,25,.22);transform:translateY(26px);transition:transform .22s ease}
+    .language-overlay.open .language-sheet{transform:translateY(0)}
+    .sheet-handle{width:38px;height:4px;margin:1px auto 13px;border-radius:99px;background:#d2d6d0}
+    .sheet-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+    .sheet-overline{margin:0;color:var(--gold);font-size:9.5px;font-weight:950;letter-spacing:.14em;text-transform:uppercase}
+    .sheet-head h2{margin:4px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:27px;font-weight:500;letter-spacing:-.03em;color:var(--pine2)}
+    .sheet-close{display:grid;place-items:center;width:35px;height:35px;border:1px solid var(--line);border-radius:11px;background:#fff;color:var(--pine);font-size:21px;line-height:1}
+    .language-note{margin:10px 0 13px;color:#65716b;font-size:11.5px;line-height:1.45}
+    .language-section-title{display:flex;align-items:center;justify-content:space-between;margin:16px 2px 8px;color:#5b6f64;font-size:10px;font-weight:950;letter-spacing:.11em;text-transform:uppercase}
+    .language-section-title span:last-child{color:#89948e;font-size:9px;letter-spacing:.04em;text-transform:none}
+    .language-list{display:grid;grid-template-columns:1fr;gap:7px;padding-bottom:5px}
+    .language-row{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:54px;padding:9px 11px;border:1px solid var(--line);border-radius:13px;background:#fff;text-align:left;color:var(--ink)}
+    .language-row:active{transform:scale(.99)}
+    .language-row.selected{border-color:#82a592;background:#f3f8f3}
+    .language-left{display:flex;align-items:center;gap:10px;min-width:0}
+    .language-flag{display:grid;place-items:center;flex:0 0 33px;width:33px;height:33px;border:1px solid #e8dfcf;border-radius:10px;background:#faf8f3;font-size:19px;line-height:1}
+    .language-name{min-width:0}
+    .language-name strong{display:block;color:#1d3027;font-size:13px;line-height:1.18}
+    .language-name small{display:block;margin-top:3px;color:#7c8981;font-size:10.5px;line-height:1.2}
+    .language-type{flex:0 0 auto;padding:4px 6px;border-radius:7px;background:#eef4ed;color:#3d704c;font-size:9px;font-weight:900;white-space:nowrap}
+    .language-type.auto{background:#f4f0e6;color:#8b6b35}
+    .language-empty{padding:23px 15px;border:1px dashed #d8cfbd;border-radius:15px;background:#fff;text-align:center;color:var(--muted);font-size:12px;line-height:1.4}
+    body.language-sheet-open{overflow:hidden}
+    @media (max-width:370px){.language-open{max-width:105px;padding-left:7px;padding-right:7px}.language-open .language-label{display:none}}
+
+
+    /* Admin panel — Firebase-ready */
+    .top-actions{display:flex;align-items:center;gap:7px;flex:0 0 auto}
+    .admin-open{display:grid;place-items:center;width:34px;height:34px;border:1px solid var(--line);border-radius:50%;background:var(--pine);color:#fff;font-size:14px;box-shadow:0 5px 14px rgba(23,63,51,.19)}
+    .admin-open:active{transform:scale(.96)}
+    .admin-overlay{position:fixed;inset:0;z-index:150;background:rgba(8,25,18,.52);display:flex;align-items:flex-end;opacity:0;visibility:hidden;transition:opacity .2s ease,visibility .2s ease}
+    .admin-overlay.open{opacity:1;visibility:visible}
+    .admin-shell{width:min(760px,100%);max-height:94dvh;overflow:auto;border-radius:26px 26px 0 0;background:#f7f5ef;box-shadow:0 -20px 60px rgba(7,24,17,.32);transform:translateY(30px);transition:transform .22s ease;padding-bottom:max(16px,env(safe-area-inset-bottom))}
+    .admin-overlay.open .admin-shell{transform:translateY(0)}
+    .admin-handle{width:38px;height:4px;margin:10px auto 8px;border-radius:99px;background:#c7cec7}
+    .admin-header{position:sticky;top:0;z-index:2;padding:10px 16px 14px;background:rgba(247,245,239,.93);border-bottom:1px solid #e4ded2;backdrop-filter:blur(15px);display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .admin-title-wrap{display:flex;align-items:center;gap:10px;min-width:0}
+    .admin-lock{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:linear-gradient(145deg,#0d3025,#226248);color:#fff;font-size:17px}
+    .admin-kicker{margin:0;color:#6c7d73;font-size:9px;font-weight:950;letter-spacing:.13em;text-transform:uppercase}
+    .admin-header h2{margin:3px 0 0;color:#102e24;font-family:Georgia,"Times New Roman",serif;font-size:24px;font-weight:500;letter-spacing:-.03em}
+    .admin-close{display:grid;place-items:center;width:36px;height:36px;border:1px solid #dfd8ca;border-radius:12px;background:#fff;color:#234035;font-size:23px;line-height:1}
+    .admin-content{padding:16px}
+    .admin-hero{padding:17px;border-radius:19px;background:linear-gradient(136deg,#11392d,#1f604a);color:#fff;box-shadow:0 14px 28px rgba(16,56,43,.16)}
+    .admin-hero .admin-overline{margin:0;color:#efd08b;font-size:9px;font-weight:950;letter-spacing:.15em;text-transform:uppercase}
+    .admin-hero h3{margin:7px 0 7px;font-family:Georgia,"Times New Roman",serif;font-size:27px;font-weight:500;line-height:1.02;letter-spacing:-.04em}
+    .admin-hero p{margin:0;color:rgba(255,255,255,.84);font-size:12px;line-height:1.5}
+    .admin-alert{margin:13px 0;padding:12px 13px;border:1px solid #eed8a8;border-radius:14px;background:#fff8e8;color:#73561e;font-size:12px;line-height:1.45}
+    .admin-alert strong{display:block;margin-bottom:3px;color:#5c4214}
+    .admin-alert.error{border-color:#efc3ba;background:#fff3f1;color:#7b3125}.admin-alert.error strong{color:#642418}
+    .admin-alert.success{border-color:#bcdcc5;background:#f1fbf3;color:#235d34}.admin-alert.success strong{color:#164724}
+    .admin-login-card,.admin-card{margin-top:14px;padding:15px;border:1px solid #e3dccf;border-radius:18px;background:#fff;box-shadow:0 8px 22px rgba(28,51,39,.05)}
+    .admin-login-card h3,.admin-card h3{margin:0;color:#173f33;font-size:16px;letter-spacing:-.02em}.admin-login-card p,.admin-card .subcopy{margin:7px 0 0;color:#6f7a73;font-size:12px;line-height:1.45}
+    .admin-form{display:grid;gap:10px;margin-top:14px}.admin-field{display:grid;gap:5px}.admin-field label{color:#53665b;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.admin-field input,.admin-field textarea,.admin-field select{width:100%;border:1px solid #ded8cb;border-radius:12px;background:#fff;color:#17271f;padding:12px;outline:none;font-size:14px}.admin-field textarea{min-height:84px;resize:vertical;line-height:1.45}.admin-field input:focus,.admin-field textarea:focus,.admin-field select:focus{border-color:#6d9d7f;box-shadow:0 0 0 4px rgba(76,134,99,.12)}
+    .admin-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.admin-form-grid .wide{grid-column:1/-1}@media(max-width:430px){.admin-form-grid{grid-template-columns:1fr}}
+    .admin-check{display:flex;align-items:center;gap:9px;padding:11px 12px;border:1px solid #e4ded0;border-radius:12px;background:#faf9f5;color:#305142;font-size:12px;font-weight:800}.admin-check input{width:18px;height:18px;accent-color:#1c674b}
+    .admin-primary,.admin-secondary,.admin-danger{border:0;border-radius:12px;min-height:45px;padding:0 14px;font-weight:900;font-size:13px}.admin-primary{background:#1a5b43;color:#fff;box-shadow:0 7px 14px rgba(23,87,64,.16)}.admin-primary:disabled{opacity:.56;cursor:not-allowed}.admin-secondary{background:#eef3ed;color:#234737;border:1px solid #dbe7dc}.admin-danger{background:#fff0ef;color:#a23a2d;border:1px solid #f0c7c1}
+    .admin-tabs{display:flex;gap:7px;overflow:auto;margin:15px -2px 0;padding:2px}.admin-tab{flex:0 0 auto;border:1px solid #dcded8;border-radius:999px;background:#fff;padding:8px 11px;color:#527060;font-size:11px;font-weight:900}.admin-tab.active{border-color:#1d5d45;background:#1d5d45;color:#fff}
+    .admin-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}.admin-stat{padding:12px 10px;border:1px solid #e5ded1;border-radius:14px;background:#fff}.admin-stat b{display:block;color:#173f33;font-size:20px;line-height:1}.admin-stat span{display:block;margin-top:5px;color:#78847d;font-size:10px;font-weight:800;line-height:1.2}
+    .admin-actions{display:flex;gap:8px;margin-top:14px}.admin-actions > *{flex:1}.admin-section-label{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:19px 2px 9px;color:#55695e;font-size:10px;font-weight:950;letter-spacing:.11em;text-transform:uppercase}.admin-section-label small{font-size:9px;color:#89958e;letter-spacing:.02em;text-transform:none}
+    .admin-menu-list{display:grid;gap:9px}.admin-category{overflow:hidden;border:1px solid #e2dbcf;border-radius:16px;background:#fff}.admin-category-head{display:flex;align-items:center;justify-content:space-between;padding:11px 12px;background:#fbfaf7;border-bottom:1px solid #eee8dd}.admin-category-head strong{font-size:13px;color:#1c3e30}.admin-category-head span{color:#78847d;font-size:10px;font-weight:800}.admin-dish-row{display:flex;align-items:center;gap:9px;padding:11px 12px;border-bottom:1px solid #f0ece4}.admin-dish-row:last-child{border-bottom:0}.admin-dish-row .admin-dish-main{min-width:0;flex:1}.admin-dish-row strong{display:block;color:#1c3026;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.admin-dish-row small{display:block;margin-top:3px;color:#78847d;font-size:10.5px}.admin-price{flex:0 0 auto;color:#1a5d44;font-size:12px;font-weight:950;white-space:nowrap}.admin-status{flex:0 0 auto;width:8px;height:8px;border-radius:50%;background:#72b17d}.admin-status.off{background:#c6b9a3}.admin-edit{flex:0 0 auto;border:1px solid #dce5dc;border-radius:9px;background:#f2f7f2;color:#275744;padding:7px 9px;font-size:10px;font-weight:900}
+    .admin-editor-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 4px}.admin-editor-head .admin-back{border:0;background:transparent;color:#1e6349;padding:4px 0;font-size:12px;font-weight:950}.admin-inline-actions{display:flex;gap:7px;margin-top:12px}.admin-inline-actions>*{flex:1}.admin-signed{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:12px;padding:10px 11px;border:1px solid #d5e2d6;border-radius:12px;background:#f4faf4;color:#336144;font-size:11px}.admin-signed b{display:block;font-size:12px;color:#1f4c33}.admin-signed small{display:block;margin-top:2px;color:#6e8175;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:178px}
+    .admin-setup-code{display:block;overflow:auto;margin-top:12px;padding:11px;border-radius:12px;background:#102a20;color:#dfeee2;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;line-height:1.45;white-space:pre-wrap}
+    body.admin-open{overflow:hidden}
+
+    /* Firebase admin additions — neutral until an administrator uses them. */
+    .dish-photo{display:block;width:100%;max-height:260px;object-fit:cover;margin:0 0 10px;border-radius:10px;border:1px solid #e7dfd2;background:#f2f3ef}
+    .detail p{margin:0}.detail .badge{margin-top:8px}
+    .admin-mini{display:inline-grid;place-items:center;min-width:30px;height:30px;padding:0 8px;border:1px solid #dce5dc;border-radius:9px;background:#f2f7f2;color:#275744;font-size:12px;font-weight:950}
+    .admin-mini.danger{border-color:#f0c7c1;background:#fff0ef;color:#a23a2d}
+    .admin-row-actions{display:flex;align-items:center;gap:5px;flex:0 0 auto}
+    .admin-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.admin-toolbar>*{flex:1 1 170px}
+    .admin-stack{display:grid;gap:10px}.admin-structure-card{overflow:hidden;border:1px solid #e2dbcf;border-radius:16px;background:#fff}.admin-structure-head{display:flex;align-items:center;gap:9px;padding:12px;border-bottom:1px solid #eee8dd;background:#fbfaf7}.admin-structure-head strong{min-width:0;flex:1;color:#1c3e30;font-size:13px}.admin-structure-head small{display:block;margin-top:3px;color:#78847d;font-size:10px}.admin-group-row{display:flex;align-items:center;gap:9px;padding:10px 12px;border-bottom:1px solid #f1ece3}.admin-group-row:last-child{border-bottom:0}.admin-group-main{min-width:0;flex:1}.admin-group-main strong{display:block;color:#253c31;font-size:12px}.admin-group-main small{display:block;margin-top:3px;color:#77847d;font-size:10px}
+    .admin-photo-preview{margin-top:4px;overflow:hidden;border:1px solid #e4ded1;border-radius:13px;background:#f7f5ef}.admin-photo-preview img{display:block;width:100%;max-height:240px;object-fit:cover}.admin-photo-preview span{display:block;padding:8px 10px;color:#6d7a72;font-size:10px;line-height:1.35}
+    .admin-help{margin-top:10px;padding:10px 11px;border:1px solid #dce7dd;border-radius:12px;background:#f5faf5;color:#476555;font-size:11px;line-height:1.42}
+    .admin-file{padding:10px!important;background:#fafaf7!important;font-size:12px!important}
+    .admin-backup{display:grid;gap:10px}.admin-backup input[type=file]{font-size:11px}
+
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <div class="toprow">
+        <div class="brand"><div class="mark">⛰</div><div><strong>KATUN MAJA KARANFIL</strong><span>Grebaje · Gusinje</span></div></div>
+        <div class="top-actions">
+          <button id="languageOpen" class="language-open" type="button" aria-haspopup="dialog" aria-controls="languageOverlay"><span id="languageButtonFlag" aria-hidden="true">🇲🇪</span><span id="languageButtonLabel" class="language-current">MNE · Jezik</span><span class="language-chevron" aria-hidden="true">⌄</span></button>
+          <button id="adminOpen" class="admin-open" type="button" aria-label="Administracija" title="Administracija">🔒</button>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="hero">
+        <p class="eyebrow" id="eyebrow">Restoranski meni</p>
+        <h1 id="heroTitle">Dobro došli za sto.</h1>
+        <p id="heroText">Izaberite kategoriju i pogledajte meni bez beskrajnog skrolovanja.</p>
+      </section>
+      <section class="instagram-live" id="instagramLive" aria-label="Katun Maja Karanfil Instagram">
+        <div class="instagram-live-head">
+          <p class="instagram-kicker" id="instagramKicker">Grebaje uživo</p>
+          <h2 id="instagramTitle">Ne gledaj Prokletije samo na mapi.</h2>
+          <p class="instagram-live-copy" id="instagramText">Najnoviji kadrovi Grebaja i Prokletija, direktno sa našeg Instagrama — fotografije i Reel snimci koji te čekaju uživo.</p>
+          <a class="instagram-link" href="https://www.instagram.com/katun.maja.karanfil?igsh=MTM2Z2FpY294a3h0ZA==" target="_blank" rel="noopener noreferrer" id="instagramLink" aria-label="Otvori Instagram Katun Maja Karanfil">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1"></circle></svg>
+            <span id="instagramButton">Otvori @katun.maja.karanfil ↗</span>
+          </a>
+        </div>
+        <div class="instagram-feed-wrap">
+          <div class="instagram-feed" id="instagramFeed" aria-live="polite" aria-busy="true">
+            <div class="instagram-feed-skeleton"></div><div class="instagram-feed-skeleton"></div><div class="instagram-feed-skeleton"></div>
+          </div>
+          <div class="instagram-foot"><span id="instagramStatus">Najnovije iz doline Grebaje</span><a id="instagramFooterLink" href="https://www.instagram.com/katun.maja.karanfil?igsh=MTM2Z2FpY294a3h0ZA==" target="_blank" rel="noopener noreferrer">@katun.maja.karanfil ↗</a></div>
+        </div>
+      </section>
+      <section class="intro" id="intro"><i>ℹ</i><p><strong id="introTitle">Mala napomena.</strong> <span id="introText">Sve cijene su u eurima. Dodirnite jelo za porcije i sastojke; za alergene i dostupnost pitajte osoblje.</span></p></section>
+      <section class="intro hidden" id="dailyNotice" aria-live="polite"><i>✦</i><p><strong id="dailyNoticeTitle">Danas.</strong> <span id="dailyNoticeText"></span></p></section>
+      <section id="home">
+        <div id="recommendationsBlock">
+          <div class="section-head"><h2 id="recommendTitle">Preporuka kuće</h2><span id="recommendSub">Naše najtraženije</span></div>
+          <div id="recommendations" class="recommendations"></div>
+        </div>
+        <div class="section-head"><h2 id="categoriesTitle">Izaberite kategoriju</h2><span id="categoriesSub">Brz i pregledan meni</span></div>
+        <div id="categories" class="category-grid"></div>
+      </section>
+      <section id="catalog" class="hidden"></section>
+      <section class="stay-card" id="stayCard" aria-label="Smještaj u Grebajama">
+        <div class="stay-icon" aria-hidden="true">⌂</div>
+        <p class="stay-badge" id="stayBadge">Smještaj u Grebajama</p>
+        <h2 class="stay-title" id="stayTitle">Ostanite duže u srcu Prokletija.</h2>
+        <p class="stay-copy" id="stayText">Bungalovi Katun Maja Karanfil mogu se rezervisati direktno putem Vibera ili WhatsAppa. Pišite nam za slobodne termine i informacije o smještaju.</p>
+        <div class="stay-actions">
+          <a class="stay-btn stay-btn-light" href="viber://chat?number=%2B38267623634" id="stayViber" aria-label="Pišite nam putem Vibera">Viber</a>
+          <a class="stay-btn stay-btn-whatsapp" href="https://wa.me/38267623634" target="_blank" rel="noopener noreferrer" id="stayWhatsapp" aria-label="Pišite nam putem WhatsAppa">WhatsApp ↗</a>
+        </div>
+      </section>
+      <footer id="footer">Katun Maja Karanfil · Grebaje, Gusinje</footer>
+    </main>
+  </div>
+
+  <div id="languageOverlay" class="language-overlay" aria-hidden="true">
+    <section class="language-sheet" role="dialog" aria-modal="true" aria-labelledby="languageTitle">
+      <div class="sheet-handle" aria-hidden="true"></div>
+      <div class="sheet-head">
+        <div><p id="languageKicker" class="sheet-overline">JEZIK / LANGUAGE</p><h2 id="languageTitle">Izaberite jezik</h2></div>
+        <button id="languageClose" class="sheet-close" type="button" aria-label="Zatvori">×</button>
+      </div>
+      <p id="languageNote" class="language-note"></p>
+      <div class="language-section-title"><span id="manualLanguagesTitle">Preporučeni jezici</span><span id="manualLanguagesMeta"></span></div>
+      <div id="manualLanguages" class="language-list"></div>
+      <div class="language-section-title"><span id="allLanguagesTitle">Svi dostupni jezici</span><span id="allLanguagesMeta"></span></div>
+      <div id="allLanguages" class="language-list"></div>
+    </section>
+  </div>
+
+
+  <div id="adminOverlay" class="admin-overlay" aria-hidden="true">
+    <section class="admin-shell" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
+      <div class="admin-handle" aria-hidden="true"></div>
+      <header class="admin-header">
+        <div class="admin-title-wrap"><div class="admin-lock">🔒</div><div><p class="admin-kicker">Katun Maja Karanfil</p><h2 id="adminTitle">Administracija</h2></div></div>
+        <button id="adminClose" class="admin-close" type="button" aria-label="Zatvori">×</button>
+      </header>
+      <div id="adminContent" class="admin-content"></div>
+    </section>
+  </div>
+
+  <script src="./firebase-config.js"></script>
+  <script>
+    let menu = [{"id":"dorucak","icon":"🍳","bs":"Doručak","en":"Breakfast","al":"Mëngjes","groups":[{"bs":"Doručak","en":"Breakfast","al":"Mëngjes","items":[{"bs":"Prženice","en":"French toast","price":"4,00","detailBs":"Jaja i hljeb - 3 komada.","detailEn":"Eggs and bread - 3 pieces.","al":"Bukë e thekur me vezë","detailAl":"Vezë dhe bukë – 3 copë."},{"bs":"Omlet sa domaćim sirom","en":"Cheese omelette","price":"5,00","detailBs":"3 jaja i 50 g domaćeg sira.","detailEn":"3 eggs and 50 g domestic cheese.","al":"Omletë me djathë shtëpie","detailAl":"3 vezë dhe 50 g djathë shtëpie."},{"bs":"Omlet sa pršutom","en":"Omelette with prosciutto","price":"6,50","detailBs":"3 jaja i 50 g pršute.","detailEn":"3 eggs and 50 g prosciutto.","al":"Omletë me proshutë","detailAl":"3 vezë dhe 50 g proshutë."},{"bs":"Barene viršle","en":"Cooked sausages","price":"5,50","detailBs":"2 komada i 3 jaja.","detailEn":"2 pieces and 3 eggs.","al":"Virshlle të ziera","detailAl":"2 copë dhe 3 vezë."},{"bs":"Slatki doručak","en":"Sweet breakfast","price":"4,00","detailBs":"Džem 50 g, krem 50 g i maslac 50 g.","detailEn":"Jam 50 g, cream spread 50 g and butter 50 g.","al":"Mëngjes i ëmbël","detailAl":"Reçel 50 g, krem 50 g dhe gjalpë 50 g."},{"bs":"Slane palačinke","en":"Savoury crepes","price":"8,00","detailBs":"Palačinke 300 g, trapist 30 g, šunka 50 g, kiseli krastavac 30 g, prezle 20 g i 2 jaja — 2 komada / ukupni normativ 400 g.","detailEn":"Crepes 300 g, Trappist cheese 30 g, ham 50 g, pickles 30 g, breadcrumbs 20 g and 2 eggs — 2 pieces / total portion 400 g.","al":"Palaçinka të kripura","detailAl":"Palaçinka 300 g, djathë trapist 30 g, proshutë 50 g, kastravec turshi 30 g, thërrime buke 20 g dhe 2 vezë — 2 copë / porcion total 400 g."}]}],"count":6},{"id":"predjela","icon":"🧀","bs":"Predjela","en":"Appetizers","al":"Paragjella","groups":[{"bs":"Hladna predjela","en":"Cold appetizers","al":"Paragjella të ftohta","items":[{"bs":"Suvi ramstek","en":"Dried beef steak","price":"5,00","detailBs":"100 g.","detailEn":"100 g.","al":"Mish viçi i tharë","detailAl":"100 g."},{"bs":"Trapist sir","en":"Trappist cheese","price":"3,00","detailBs":"100 g.","detailEn":"100 g.","al":"Djathë trapist","detailAl":"100 g."},{"bs":"Masline","en":"Olives","price":"2,50","detailBs":"50 g.","detailEn":"50 g.","al":"Ullinj","detailAl":"50 g."},{"bs":"Domaći kajmak","en":"Homemade kaymak","price":"5,00","detailBs":"100 g.","detailEn":"100 g.","al":"Kajmak shtëpie","detailAl":"100 g."},{"bs":"Domaći sir","en":"Homemade cheese","price":"3,00","detailBs":"100 g.","detailEn":"100 g.","al":"Djathë shtëpie","detailAl":"100 g."}]}],"count":5},{"id":"rostilj","icon":"🔥","bs":"Roštilj","en":"Barbecue","al":"Zgarë","groups":[{"bs":"Jela sa roštilja","en":"Barbecue meals","al":"Gatime në zgarë","items":[{"bs":"Ćevapi","en":"Ćevapi grilled minced meat","price":"10,00","detailBs":"250 g - prilog: riža 80 g ili krompir 130 g.","detailEn":"250 g - side: 80 g rice or 130 g potatoes.","al":"Qebapa","detailAl":"250 g – shtesë: 80 g oriz ose 130 g patate."},{"bs":"Ćevapi - 5 komada","en":"Ćevapi - 5 pieces","price":"7,00","detailBs":"125 g - prilog: riža 80 g ili krompir 130 g.","detailEn":"125 g - side: 80 g rice or 130 g potatoes.","al":"Qebapa – 5 copë","detailAl":"125 g – shtesë: 80 g oriz ose 130 g patate."},{"bs":"Pljeskavica","en":"Beef burger patty","price":"10,00","detailBs":"300 g - prilog: riža 80 g ili krompir 130 g.","detailEn":"300 g - side: 80 g rice or 130 g potatoes.","al":"Pleskavicë viçi","detailAl":"300 g – shtesë: 80 g oriz ose 130 g patate."},{"bs":"Pljeskavica s trapistom","en":"Beef burger patty with Trappist cheese","price":"12,00","detailBs":"300 g - prilog: riža 80 g ili krompir 130 g.","detailEn":"300 g - side: 80 g rice or 130 g potatoes.","al":"Pleskavicë viçi me trapist","detailAl":"300 g – shtesë: 80 g oriz ose 130 g patate."},{"bs":"Sudžuk","en":"Grilled sausage","price":"10,00","detailBs":"250 g - prilog: riža 80 g ili krompir 130 g.","detailEn":"250 g - side: 80 g rice or 130 g potatoes.","al":"Suxhuk në zgarë","detailAl":"250 g – shtesë: 80 g oriz ose 130 g patate."},{"bs":"Pileći file","en":"Chicken fillet","price":"10,00","detailBs":"250 g - prilog: riža 80 g ili krompir 130 g.","detailEn":"250 g - side: 80 g rice or 130 g potatoes.","al":"Fileto pule","detailAl":"250 g – shtesë: 80 g oriz ose 130 g patate."},{"bs":"Pileći file u kajmaku","en":"Chicken fillet with kaymak","price":"12,00","detailBs":"Pileći file 250 g i kajmak 50 g — prilog: riža 80 g ili krompir 130 g.","detailEn":"Chicken fillet 250 g with kaymak 50 g — side: rice 80 g or potatoes 130 g.","al":"Fileto pule me kajmak","detailAl":"Fileto pule 250 g me kajmak 50 g — shtesë: oriz 80 g ose patate 130 g."},{"bs":"Pohovani pileći file","en":"Breaded chicken fillet","price":"11,00","detailBs":"250 g - prilog: riža 80 g ili krompir 130 g.","detailEn":"250 g - side: 80 g rice or 130 g potatoes.","al":"Fileto pule e skuqur","detailAl":"250 g – shtesë: 80 g oriz ose 130 g patate."},{"bs":"Pohovani pileći file u kajmaku","en":"Breaded chicken fillet with kaymak","price":"13,00","detailBs":"Pohovani pileći file 250 g i kajmak 50 g — prilog: riža 80 g ili krompir 130 g.","detailEn":"Breaded chicken fillet 250 g with kaymak 50 g — side: rice 80 g or potatoes 130 g.","al":"Fileto pule e skuqur me kajmak","detailAl":"Fileto pule e skuqur 250 g me kajmak 50 g — shtesë: oriz 80 g ose patate 130 g."},{"bs":"Pileći file u sosu","en":"Chicken fillet in sauce","price":"11,50","detailBs":"300 g - prilog: riža 80 g ili krompir 130 g.","detailEn":"300 g - side: 80 g rice or 130 g potatoes.","al":"Fileto pule në salcë","detailAl":"300 g – shtesë: 80 g oriz ose 130 g patate."},{"bs":"Teletina sa roštilja","en":"Grilled veal","price":"15,00","detailBs":"250 g - riža 80 g i krompir 150 g.","detailEn":"250 g - 80 g rice and 150 g potatoes.","al":"Mish viçi në zgarë","detailAl":"250 g – 80 g oriz dhe 150 g patate."},{"bs":"Kremenadle","en":"Veal chop","price":"11,00","detailBs":"300 g - sos, riža 80 g i krompir 150 g.","detailEn":"300 g - sauce, 80 g rice and 150 g potatoes.","al":"Bërxolla viçi","detailAl":"300 g – salcë, 80 g oriz dhe 150 g patate."}]}],"count":12},{"id":"specijaliteti","icon":"⛰️","bs":"Specijaliteti Grebaja","en":"Grebaje specialties","al":"Specialitete të Grebajes","groups":[{"bs":"Preporuka kuće","en":"House recommendations","al":"Rekomandimi i shtëpisë","items":[{"bs":"Grebajski sto - teletina","en":"Grebaje platter - veal","price":"16,00","detailBs":"250 g teletine, ajvar 30 g, zaljučena paprika, krompir 100 g, domaći sir 50 g i grilovano povrće 150 g.","detailEn":"250 g veal, 30 g ajvar, garlic pepper, 100 g potatoes, 50 g homemade cheese and 150 g grilled vegetables.","badgeBs":"Preporuka kuće","badgeEn":"House recommendation","al":"Pjatë e Grebajes – viçi","detailAl":"250 g mish viçi, 30 g ajvar, spec me hudhër, 100 g patate, 50 g djathë shtëpie dhe 150 g perime në zgarë.","badgeAl":"Rekomandimi i shtëpisë"},{"bs":"Grebajski sto - jagnjetina","en":"Grebaje platter - lamb","price":"18,00","detailBs":"350 g jagnjetine, ajvar 30 g, zaljučena paprika, krompir 130 g, domaći sir 50 g i grilovano povrće 150 g.","detailEn":"350 g lamb, 30 g ajvar, garlic pepper, 130 g potatoes, 50 g homemade cheese and 150 g grilled vegetables.","badgeBs":"Preporuka kuće","badgeEn":"House recommendation","al":"Pjatë e Grebajes – qengj","detailAl":"350 g mish qengji, 30 g ajvar, spec me hudhër, 130 g patate, 50 g djathë shtëpie dhe 150 g perime në zgarë.","badgeAl":"Rekomandimi i shtëpisë"},{"bs":"Grebajski sto - jaretina","en":"Grebaje platter - goat meat","price":"21,00","detailBs":"300 g jaretine, ajvar 30 g, zaljučena paprika, krompir 130 g, domaći sir 50 g i grilovano povrće 150 g.","detailEn":"300 g goat meat, 30 g ajvar, garlic pepper, 130 g potatoes, 50 g homemade cheese and 150 g grilled vegetables.","badgeBs":"Preporuka kuće","badgeEn":"House recommendation","al":"Pjatë e Grebajes – kec","detailAl":"300 g mish keci, 30 g ajvar, spec me hudhër, 130 g patate, 50 g djathë shtëpie dhe 150 g perime në zgarë.","badgeAl":"Rekomandimi i shtëpisë"},{"bs":"Kačamak kukuruzni","en":"Corn flour kačamak","price":"12,00","detailBs":"500 g.","detailEn":"500 g.","badgeBs":"Domaće jelo","badgeEn":"Homemade dish","al":"Kaçamak me miell misri","detailAl":"500 g.","badgeAl":"Gatim shtëpie"},{"bs":"Domaća pita","en":"Homemade pie","price":"6,00","detailBs":"Komad - 450 g.","detailEn":"Piece - 450 g.","badgeBs":"Domaće jelo","badgeEn":"Homemade dish","al":"Pite shtëpie","detailAl":"Copë – 450 g.","badgeAl":"Gatim shtëpie"},{"bs":"Grebajska sofra","en":"Grebaje table platter","price":"25,00","detailBs":"Kukuruzni hljeb 2 komada (200 g), domaći sir 100 g, kajmak 100 g, pita 150 g, zalučena paprika 100 g, kiselo mlijeko 2 komada i suvo meso 100 g.","detailEn":"2 corn breads (200 g), homemade cheese 100 g, kaymak 100 g, pie 150 g, garlic pepper 100 g, 2 sour milks and dried meat 100 g.","badgeBs":"Za dijeljenje","badgeEn":"For sharing","al":"Sofra e Grebajes","detailAl":"2 bukë misri (200 g), djathë shtëpie 100 g, kajmak 100 g, pite 150 g, spec me hudhër 100 g, 2 qumësht të thartë dhe mish i tharë 100 g.","badgeAl":"Për ta ndarë"}]},{"bs":"Riba i pečenja","en":"Fish & roast","al":"Peshk & mish i pjekur","items":[{"bs":"Pastrmka","en":"Trout","price":"30,00","detailBs":"1 kg - prilog: krompir salata.","detailEn":"1 kg - served with potato salad.","al":"Troftë","detailAl":"1 kg – shërbehet me sallatë patate."},{"bs":"Jagnjetina","en":"Roast lamb","price":"45,00","detailBs":"1 kg - prilog: pekarski krompir.","detailEn":"1 kg - served with baked potatoes.","al":"Mish qengji i pjekur","detailAl":"1 kg – shërbehet me patate furre."},{"bs":"Jaretina","en":"Roast goat meat","price":"60,00","detailBs":"1 kg - prilog: pekarski krompir.","detailEn":"1 kg - served with baked potatoes.","al":"Mish keci i pjekur","detailAl":"1 kg – shërbehet me patate furre."},{"bs":"Teleće pečenje","en":"Roast veal","price":"45,00","detailBs":"1 kg - prilog: pekarski krompir.","detailEn":"1 kg - served with baked potatoes.","al":"Mish viçi i pjekur","detailAl":"1 kg – shërbehet me patate furre."}]}],"count":10},{"id":"vege-salate","icon":"🥗","bs":"Vegetarijansko i salate","en":"Vegetarian & salads","al":"Vegjetariane & sallata","groups":[{"bs":"Vegetarijanska jela","en":"Vegetarian dishes","al":"Gatime vegjetariane","items":[{"bs":"Špagete sa trapistom","en":"Spaghetti with Trappist cheese","price":"6,00","detailBs":"250 g.","detailEn":"250 g.","badgeBs":"Vegetarijansko","badgeEn":"Vegetarian","al":"Spageti me trapist","detailAl":"250 g.","badgeAl":"Vegjetariane"},{"bs":"Špagete sa bešamel sosom","en":"Spaghetti with béchamel sauce","price":"7,00","detailBs":"250 g.","detailEn":"250 g.","badgeBs":"Vegetarijansko","badgeEn":"Vegetarian","al":"Spageti me salcë beshamel","detailAl":"250 g.","badgeAl":"Vegjetariane"},{"bs":"Grilovano povrće","en":"Grilled vegetables","price":"7,00","detailBs":"Miješano povrće - 250 g.","detailEn":"Mixed vegetables - 250 g.","badgeBs":"Vegetarijansko","badgeEn":"Vegetarian","al":"Perime në zgarë","detailAl":"Perime të përziera – 250 g.","badgeAl":"Vegjetariane"},{"bs":"Pohovani kačkavalj","en":"Breaded cheese","price":"7,50","detailBs":"2 komada - 150 g.","detailEn":"2 pieces - 150 g.","badgeBs":"Vegetarijansko","badgeEn":"Vegetarian","al":"Kaçkavall i skuqur","detailAl":"2 copë – 150 g.","badgeAl":"Vegjetariane"},{"bs":"Riža sa povrćem","en":"Rice with vegetables","price":"6,00","detailBs":"400 g.","detailEn":"400 g.","badgeBs":"Vegetarijansko","badgeEn":"Vegetarian","al":"Oriz me perime","detailAl":"400 g.","badgeAl":"Vegjetariane"}]},{"bs":"Salate i prilozi","en":"Salads & sides","al":"Sallata & shtesa","items":[{"bs":"Šopska salata","en":"Shopska salad","price":"5,00","detailBs":"250 g.","detailEn":"250 g.","al":"Sallatë shopska","detailAl":"250 g."},{"bs":"Šopska ljuta salata","en":"Spicy Shopska salad","price":"5,00","detailBs":"250 g.","detailEn":"250 g.","al":"Sallatë shopska pikante","detailAl":"250 g."},{"bs":"Miješana salata","en":"Mixed salad","price":"3,00","detailBs":"200 g.","detailEn":"200 g.","al":"Sallatë e përzier","detailAl":"200 g."},{"bs":"Kupus salata","en":"Cabbage salad","price":"3,00","detailBs":"200 g.","detailEn":"200 g.","al":"Sallatë lakre","detailAl":"200 g."},{"bs":"Krastavac salata","en":"Cucumber salad","price":"3,00","detailBs":"200 g.","detailEn":"200 g.","al":"Sallatë kastraveci","detailAl":"200 g."},{"bs":"Paradajz salata","en":"Tomato salad","price":"3,00","detailBs":"200 g.","detailEn":"200 g.","al":"Sallatë domatesh","detailAl":"200 g."},{"bs":"Tarator","en":"Tarator","price":"4,00","detailBs":"150 g.","detailEn":"150 g.","al":"Tarator","detailAl":"150 g."},{"bs":"Zalučena paprika","en":"Garlic pepper","price":"3,00","detailBs":"1 komad.","detailEn":"1 piece.","al":"Spec i pjekur me hudhër","detailAl":"1 copë."},{"bs":"Zalučena paprika sa kajmakom","en":"Garlic pepper with kaymak","price":"5,50","detailBs":"1 komad.","detailEn":"1 piece.","al":"Spec i pjekur me kajmak","detailAl":"1 copë."},{"bs":"Zalučena paprika sa sirom","en":"Garlic pepper with cheese","price":"4,50","detailBs":"1 komad.","detailEn":"1 piece.","al":"Spec i pjekur me djathë","detailAl":"1 copë."},{"bs":"Pomfrit","en":"French fries","price":"4,00","detailBs":"200 g.","detailEn":"200 g.","al":"Patate të skuqura","detailAl":"200 g."}]}],"count":16},{"id":"supe","icon":"🥣","bs":"Supe i hljeb","en":"Soups & bread","al":"Supa & bukë","groups":[{"bs":"Supe i hljeb","en":"Soups & bread","al":"Supa & bukë","items":[{"bs":"Teleća čorba","en":"Veal soup","price":"5,00","detailBs":"250 ml — teletina 100 g, šargarepa 30 g, krompir 30 g i začini 5 g.","detailEn":"250 ml — veal 100 g, carrot 30 g, potatoes 30 g and spices 5 g.","al":"Çorbë viçi","detailAl":"250 ml — mish viçi 100 g, karotë 30 g, patate 30 g dhe erëza 5 g."},{"bs":"Povrtna supa","en":"Vegetable soup","price":"4,00","detailBs":"250 ml — povrće 150 g i začini 5 g.","detailEn":"250 ml — vegetables 150 g and spices 5 g.","badgeBs":"Vegetarijansko","badgeEn":"Vegetarian","al":"Supë me perime","detailAl":"250 ml — perime 150 g dhe erëza 5 g.","badgeAl":"Vegjetariane"},{"bs":"Pileća čorba","en":"Chicken soup","price":"5,00","detailBs":"250 ml — piletina 100 g, šargarepa 30 g, krompir 30 g i začini 5 g.","detailEn":"250 ml — chicken 100 g, carrot 30 g, potatoes 30 g and spices 5 g.","al":"Çorbë pule","detailAl":"250 ml — pulë 100 g, karotë 30 g, patate 30 g dhe erëza 5 g."},{"bs":"Gulaš","en":"Goulash","price":"11,00","detailBs":"250 ml — prilog: pire krompir 150 g ili pekarski krompir 150 g.","detailEn":"250 ml — side: mashed potatoes 150 g or baked potatoes 150 g.","al":"Gullash viçi","detailAl":"250 ml — shtesë: pure patatesh 150 g ose patate furre 150 g."},{"bs":"Hljeb - parče","en":"Bread - slice","price":"0,50","detailBs":"Parče hljeba.","detailEn":"One slice of bread.","al":"Copë bukë","detailAl":"1 copë."}]}],"count":5},{"id":"deserti","icon":"🍰","bs":"Dezerti","en":"Desserts","al":"Ëmbëlsira","groups":[{"bs":"Slatki završetak","en":"Something sweet","al":"Diçka e ëmbël","items":[{"bs":"Hačajlija","en":"Hačajlija homemade cake","price":"3,00","detailBs":"1 komad.","detailEn":"1 piece.","al":"Haçajlija – ëmbëlsirë shtëpie","detailAl":"1 copë."},{"bs":"Domaći kolač","en":"Homemade cake","price":"3,00","detailBs":"1 komad.","detailEn":"1 piece.","al":"Ëmbëlsirë shtëpie","detailAl":"1 copë."},{"bs":"Slatke palačinke sa kremom i plazmom","en":"Sweet crepes with cream and biscuit","price":"5,00","detailBs":"Palačinke 150 g, krem 70 g i Plazma 30 g — 2 komada.","detailEn":"Crepes 150 g, cream spread 70 g and Plazma biscuit 30 g — 2 pieces.","al":"Palaçinka të ëmbla me krem dhe Plazma","detailAl":"Palaçinka 150 g, krem 70 g dhe biskotë Plazma 30 g — 2 copë."},{"bs":"Slatke palačinke sa domaćim džemom","en":"Sweet crepes with homemade jam","price":"5,00","detailBs":"Palačinke 150 g s domaćim džemom od borovnice — 2 komada.","detailEn":"Crepes 150 g with homemade blueberry jam — 2 pieces.","al":"Palaçinka të ëmbla me reçel shtëpie","detailAl":"Palaçinka 150 g me reçel shtëpie me boronicë — 2 copë."},{"bs":"Slatke palačinke sa medom i orasima","en":"Sweet crepes with honey and walnuts","price":"8,50","detailBs":"Palačinke 150 g s medom i orasima — 2 komada.","detailEn":"Crepes 150 g with honey and walnuts — 2 pieces.","al":"Palaçinka të ëmbla me mjaltë dhe arra","detailAl":"Palaçinka 150 g me mjaltë dhe arra — 2 copë."},{"bs":"Sladoled - bar/štapić","en":"Ice cream bar / stick","price":"2,00","detailBs":"1 komad.","detailEn":"1 piece.","al":"Akullore – bar/shkop","detailAl":"1 copë."},{"bs":"Sladoled - tegla","en":"Ice cream jar","price":"4,00","detailBs":"1 komad.","detailEn":"1 piece.","al":"Akullore – gotë","detailAl":"1 copë."},{"bs":"Sladoled Leden","en":"Leden ice cream","price":"1,50","detailBs":"1 komad.","detailEn":"1 piece.","al":"Akullore Leden","detailAl":"1 copë."},{"bs":"Sladoled Tartuffo","en":"Tartuffo ice cream","price":"3,50","detailBs":"1 komad.","detailEn":"1 piece.","al":"Akullore Tartuffo","detailAl":"1 copë."},{"bs":"Slatke palačinke sa kremom, plazmom i prelivom od pistaća","en":"Sweet crepes with cream, biscuit and pistachio topping","price":"6,50","detailBs":"Palačinke 150 g s kremom, Plazmom i prelivom od pistaća — 2 komada.","detailEn":"Crepes 150 g with cream spread, Plazma biscuit and pistachio topping — 2 pieces.","al":"Palaçinka të ëmbla me krem, Plazma dhe salcë fëstëku","detailAl":"Palaçinka 150 g me krem, biskotë Plazma dhe salcë fëstëku — 2 copë."}]}],"count":10},{"id":"pension-menu","icon":"🏡","bs":"Pension meni","en":"Pension Menu","al":"Menu pensioni","groups":[{"bs":"Pension meni","en":"Pension Menu","al":"Menu pensioni","items":[{"bs":"Ćevapi","en":"Ćevapi","al":"Qebapa","price":"","detailBs":"5 komada, 150 g; riža 80 g, krompir 130 g i miješana salata 250 g.","detailEn":"5 pieces, 150 g; rice 80 g, potatoes 130 g and mixed salad 250 g.","detailAl":"5 copë, 150 g; oriz 80 g, patate 130 g dhe sallatë e përzier 250 g."},{"bs":"Pileći file","en":"Chicken fillet","al":"Fileto pule","price":"","detailBs":"Pileći file 125 g, riža 80 g, krompir 130 g i miješana salata 250 g.","detailEn":"Chicken fillet 125 g, rice 80 g, potatoes 130 g and mixed salad 250 g.","detailAl":"Fileto pule 125 g, oriz 80 g, patate 130 g dhe sallatë e përzier 250 g."},{"bs":"Riža sa povrćem","en":"Rice with vegetables","al":"Oriz me perime","price":"","detailBs":"Riža 250 g, povrće 80 g i miješana salata 250 g.","detailEn":"Rice 250 g, vegetables 80 g and mixed salad 250 g.","detailAl":"Oriz 250 g, perime 80 g dhe sallatë e përzier 250 g."},{"bs":"Špagete","en":"Spaghetti","al":"Spageti","price":"","detailBs":"Špagete s trapistom ili bešamel sosom 250 g i miješana salata 250 g.","detailEn":"Spaghetti with Trappist cheese or béchamel sauce 250 g and mixed salad 250 g.","detailAl":"Spageti me djathë trapist ose salcë beshamel 250 g dhe sallatë e përzier 250 g."},{"bs":"Pohovani kačkavalj","en":"Breaded cheese","al":"Kaçkavall i skuqur","price":"","detailBs":"2 komada (150 g), tatar sos i miješana salata 250 g.","detailEn":"2 pieces (150 g), tartar sauce and mixed salad 250 g.","detailAl":"2 copë (150 g), salcë tartar dhe sallatë e përzier 250 g."}]}],"count":5},{"id":"pica","icon":"☕","bs":"Pića","en":"Drinks","al":"Pije","groups":[{"bs":"Domaća pića","en":"Home-made drinks","al":"Pije shtëpie","items":[{"bs":"Domaće kiselo mlijeko","en":"Homemade sour milk","price":"3,00","detailBs":"250 ml.","detailEn":"250 ml.","badgeBs":"Domaće","badgeEn":"Homemade","al":"Qumësht i thartë shtëpie","detailAl":"250 ml.","badgeAl":"Shtëpie"},{"bs":"Jardum","en":"Jardum","price":"3,00","detailBs":"250 ml.","detailEn":"250 ml.","badgeBs":"Domaće","badgeEn":"Homemade","al":"Jardum","detailAl":"250 ml.","badgeAl":"Shtëpie"},{"bs":"Domaća borovnica","en":"Homemade blueberry drink","price":"3,50","detailBs":"250 ml.","detailEn":"250 ml.","badgeBs":"Domaće","badgeEn":"Homemade","al":"Pije shtëpie me boronicë","detailAl":"250 ml.","badgeAl":"Shtëpie"},{"bs":"Domaća aronija","en":"Homemade chokeberry drink","price":"3,50","detailBs":"250 ml.","detailEn":"250 ml.","badgeBs":"Domaće","badgeEn":"Homemade","al":"Pije shtëpie me aroni","detailAl":"250 ml.","badgeAl":"Shtëpie"}]},{"bs":"Topli napici","en":"Hot drinks","al":"Pije të ngrohta","items":[{"bs":"Kafa","en":"Coffee","price":"2,00","detailBs":"100 ml.","detailEn":"100 ml.","al":"Kafe","detailAl":"100 ml."},{"bs":"Čaj","en":"Tea","price":"1,00","detailBs":"200 ml.","detailEn":"200 ml.","al":"Çaj","detailAl":"200 ml."},{"bs":"Nes kafa","en":"Nescafé","price":"2,50","detailBs":"150 ml.","detailEn":"150 ml.","al":"Nescafé","detailAl":"150 ml."}]},{"bs":"Bezalkoholna pića","en":"Non-alcoholic drinks","al":"Pije pa alkool","items":[{"bs":"Limunada","en":"Lemonade","price":"2,50","detailBs":"250 ml.","detailEn":"250 ml.","al":"Limonadë","detailAl":"250 ml."},{"bs":"Obična voda - flaša","en":"Still water - bottle","price":"1,50","detailBs":"0,33 l.","detailEn":"0.33 l.","al":"Ujë pa gaz – shishe","detailAl":"0,33 l."},{"bs":"Voćni sok - limenka","en":"Fruit juice - can","price":"2,50","detailBs":"0,25 l.","detailEn":"0.25 l.","al":"Lëng frutash – kanaçe","detailAl":"0,25 l."},{"bs":"Obična voda - 1,5 l","en":"Still water - 1.5 l","price":"3,00","detailBs":"Flaša 1,5 l.","detailEn":"1.5 l bottle.","al":"Ujë pa gaz – 1,5 l","detailAl":"Shishe 1,5 l."},{"bs":"Coca-Cola / Fanta / Sprite","en":"Coca-Cola / Fanta / Sprite","price":"2,50","detailBs":"Limenka 0,33 l.","detailEn":"0.33 l can.","al":"Coca-Cola / Fanta / Sprite","detailAl":"Kanaçe 0,33 l."},{"bs":"Ultra Energy","en":"Ultra Energy","price":"2,50","detailBs":"Limenka 250 ml.","detailEn":"250 ml can.","al":"Ultra Energy","detailAl":"Kanaçe 250 ml."},{"bs":"Kisela voda","en":"Mineral water","price":"1,50","detailBs":"Flaša 0,25 l.","detailEn":"0.25 l bottle.","al":"Ujë mineral","detailAl":"Shishe 0,25 l."},{"bs":"Red Bull","en":"Red Bull","price":"4,00","detailBs":"Limenka 0,25 l.","detailEn":"0.25 l can.","al":"Red Bull","detailAl":"Kanaçe 0,25 l."}]},{"bs":"Alkoholna pića i vina","en":"Alcoholic drinks & wines","al":"Pije alkoolike & verëra","items":[{"bs":"Pivo","en":"Beer","price":"3,50","detailBs":"0,33 l.","detailEn":"0.33 l.","al":"Birrë","detailAl":"0,33 l."},{"bs":"Lozova rakija","en":"Grape rakija","price":"2,00","detailBs":"0,033 l.","detailEn":"0.033 l.","al":"Raki rrushi","detailAl":"0,033 l."},{"bs":"Pelinkovac","en":"Pelinkovac","price":"2,00","detailBs":"0,033 l.","detailEn":"0.033 l.","al":"Pelinkovac","detailAl":"0,033 l."},{"bs":"Votka","en":"Vodka","price":"2,00","detailBs":"0,033 l.","detailEn":"0.033 l.","al":"Vodka","detailAl":"0,033 l."},{"bs":"Viljamovka","en":"Pear rakija","price":"2,00","detailBs":"0,033 l.","detailEn":"0.033 l.","al":"Raki dardhe","detailAl":"0,033 l."},{"bs":"Vinjak","en":"Vinjak brandy","price":"2,00","detailBs":"0,033 l.","detailEn":"0.033 l.","al":"Vinjak","detailAl":"0,033 l."},{"bs":"Vranac","en":"Vranac red wine","price":"4,00","detailBs":"0,178 l.","detailEn":"0.178 l.","al":"Vranac – verë e kuqe","detailAl":"0,178 l."},{"bs":"Prokorder","en":"Prokorder wine","price":"4,00","detailBs":"0,178 l.","detailEn":"0.178 l.","al":"Prokorder – verë","detailAl":"0,178 l."}]}],"count":23}];
+    const copy = {
+      bs:{eyebrow:'Restoranski meni',heroTitle:'Dobro došli za sto.',heroText:'Izaberite kategoriju i pogledajte meni bez beskrajnog skrolovanja.',introTitle:'Mala napomena.',introText:'Sve cijene su u eurima. Dodirnite jelo za porcije i sastojke; za alergene i dostupnost pitajte osoblje.',recommendTitle:'Preporuka kuće',recommendSub:'Naše najtraženije',categoriesTitle:'Izaberite kategoriju',categoriesSub:'Brz i pregledan meni',search:'Pretraži jela i pića...',back:'Nazad na kategorije',details:'Detalji',items:'stavki',resultTitle:'Rezultati pretrage',emptyTitle:'Nema rezultata',emptyText:'Pokušajte sa drugim nazivom jela ili pića.',footer:'Katun Maja Karanfil · Grebaje, Gusinje',stayBadge:'Smještaj u Grebajama',stayTitle:'Ostanite duže u srcu Prokletija.',stayText:'Bungalovi Katun Maja Karanfil mogu se rezervisati direktno putem Vibera ili WhatsAppa. Pišite nam za slobodne termine i informacije o smještaju.',stayPhone:'067 623 634',stayViber:'Viber',stayWhatsapp:'WhatsApp ↗',instagramKicker:'Grebaje uživo',instagramTitle:'Ne gledaj Prokletije samo na mapi.',instagramText:'Najnoviji kadrovi Grebaja i Prokletija, direktno sa našeg Instagrama — fotografije i Reel snimci koji te čekaju uživo.',instagramButton:'Otvori @katun.maja.karanfil ↗',instagramStatus:'Najnovije iz doline Grebaje',instagramEmptyTitle:'Grebaje kroz objektiv',instagramEmptyText:'Otvori naš profil i pogledaj najnovije fotografije i Reel snimke.'},
+      en:{eyebrow:'Restaurant menu',heroTitle:'Welcome to the table.',heroText:'Choose a category and browse without endless scrolling.',introTitle:'A small note.',introText:'All prices are in euros. Tap a dish for portion and ingredient details; ask our staff about allergens and availability.',recommendTitle:'House recommendations',recommendSub:'Our most requested',categoriesTitle:'Choose a category',categoriesSub:'Quick and easy menu',search:'Search food and drinks...',back:'Back to categories',details:'Details',items:'items',resultTitle:'Search results',emptyTitle:'No results found',emptyText:'Try a different food or drink name.',footer:'Katun Maja Karanfil · Grebaje, Gusinje',stayBadge:'Stay in Grebaje',stayTitle:'Stay longer in the heart of Prokletije.',stayText:'Katun Maja Karanfil bungalows can be booked directly via Viber or WhatsApp. Message us for availability and accommodation information.',stayPhone:'067 623 634',stayViber:'Viber',stayWhatsapp:'WhatsApp ↗',instagramKicker:'Grebaje, live',instagramTitle:'See Prokletije beyond the menu.',instagramText:'The latest scenes from Grebaje and Prokletije, directly from our Instagram — photographs and Reel videos waiting for you.',instagramButton:'Open @katun.maja.karanfil ↗',instagramStatus:'Latest from Grebaje Valley',instagramEmptyTitle:'Grebaje through the lens',instagramEmptyText:'Open our profile to see the newest photos and Reel videos.'},
+      al:{eyebrow:'Menu i restorantit',heroTitle:'Mirë se vini në tryezë.',heroText:'Zgjidhni një kategori dhe shikoni menynë pa lëvizje të pafundme.',introTitle:'Një shënim i vogël.',introText:'Të gjitha çmimet janë në euro. Prekni gatimin për detaje të porcionit dhe përbërësve; për alergjenë dhe disponueshmëri pyesni stafin.',recommendTitle:'Rekomandimi i shtëpisë',recommendSub:'Më të kërkuarat',categoriesTitle:'Zgjidhni kategorinë',categoriesSub:'Menu e shpejtë dhe e qartë',search:'Kërko gatime dhe pije...',back:'Kthehu te kategoritë',details:'Detajet',items:'artikuj',resultTitle:'Rezultatet e kërkimit',emptyTitle:'Nuk u gjet asgjë',emptyText:'Provoni një emër tjetër të gatimit ose pijes.',footer:'Katun Maja Karanfil · Grebaje, Gusinje',stayBadge:'Akomodim në Grebaje',stayTitle:'Qëndroni më gjatë në zemër të Bjeshkëve të Nemuna.',stayText:'Bungalot e Katun Maja Karanfil mund të rezervohen drejtpërdrejt përmes Viber ose WhatsApp. Na shkruani për termine të lira dhe informacione për akomodimin.',stayPhone:'067 623 634',stayViber:'Viber',stayWhatsapp:'WhatsApp ↗',instagramKicker:'Grebaje, drejtpërdrejt',instagramTitle:'Mos i shiko Bjeshkët e Nemuna vetëm në hartë.',instagramText:'Pamjet më të reja nga Grebaje dhe Bjeshkët e Nemuna, direkt nga Instagrami ynë — fotografi dhe video Reel që ju presin.',instagramButton:'Hap @katun.maja.karanfil ↗',instagramStatus:'Më të rejat nga Lugina e Grebajes',instagramEmptyTitle:'Grebaje përmes objektivit',instagramEmptyText:'Hap profilin tonë për të parë fotografitë dhe videot Reel më të reja.'}
+
+    };
+
+    const languageUI = {
+      bs:{button:'Jezik',title:'Izaberite jezik',kicker:'JEZIK / LANGUAGE',note:'Montenegro, Albania i English su ručno provjerene verzije menija. Ostali jezici otvaraju automatski prevod kompletnog menija. Dodirnite zastavu jezika koji želite.',find:'Pronađi jezik...',manual:'Preporučeni jezici',manualMeta:'ručno prevedeno',all:'Svi dostupni jezici',allMeta:'automatski prevod',hand:'Ručno prevedeno',auto:'Automatski prevod',empty:'Nema jezika sa tim nazivom.'},
+      en:{button:'Language',title:'Choose language',kicker:'LANGUAGE',note:'Montenegro, Albania and English are carefully prepared menu versions. Other languages open an automatic translation of the complete menu. Tap the flag of your preferred language.',find:'Find a language...',manual:'Recommended languages',manualMeta:'hand-translated',all:'All available languages',allMeta:'automatic translation',hand:'Hand-translated',auto:'Automatic translation',empty:'No language found with that name.'},
+      al:{button:'Gjuha',title:'Zgjidhni gjuhën',kicker:'GJUHA / LANGUAGE',note:'Mali i Zi, Shqipëria dhe English janë versione të kontrolluara të menusë. Gjuhët e tjera hapin përkthim automatik të menusë së plotë. Prekni flamurin e gjuhës që dëshironi.',find:'Gjeni një gjuhë...',manual:'Gjuhët e rekomanduara',manualMeta:'të përkthyera me dorë',all:'Të gjitha gjuhët e disponueshme',allMeta:'përkthim automatik',hand:'Përkthim i kontrolluar',auto:'Përkthim automatik',empty:'Nuk u gjet asnjë gjuhë me këtë emër.'}
+    };
+    const worldLanguages = [{"code":"ab","name":"Abkhaz","native":"Аҧсшәа","search":"Abkhaz Аҧсшәа"},{"code":"ace","name":"Acehnese","native":"Bahsa Acèh","search":"Acehnese Bahsa Acèh"},{"code":"ach","name":"Acholi","native":"Lwo","search":"Acholi Lwo"},{"code":"af","name":"Afrikaans","native":"Afrikaans","search":"Afrikaans Afrikaans"},{"code":"sq","name":"Albanian","native":"Shqip","search":"Albanian Shqip"},{"code":"alz","name":"Alur","native":"Alur","search":"Alur Alur"},{"code":"am","name":"Amharic","native":"አማርኛ","search":"Amharic አማርኛ"},{"code":"ar","name":"Arabic","native":"العربية","search":"Arabic العربية"},{"code":"hy","name":"Armenian","native":"Հայերեն","search":"Armenian Հայերեն"},{"code":"as","name":"Assamese","native":"অসমীয়া","search":"Assamese অসমীয়া"},{"code":"awa","name":"Awadhi","native":"अवधी","search":"Awadhi अवधी"},{"code":"ay","name":"Aymara","native":"Aymar aru","search":"Aymara Aymar aru"},{"code":"az","name":"Azerbaijani","native":"Azərbaycanca","search":"Azerbaijani Azərbaycanca"},{"code":"ban","name":"Balinese","native":"Basa Bali","search":"Balinese Basa Bali"},{"code":"bm","name":"Bambara","native":"Bamanankan","search":"Bambara Bamanankan"},{"code":"ba","name":"Bashkir","native":"Башҡортса","search":"Bashkir Башҡортса"},{"code":"eu","name":"Basque","native":"Euskara","search":"Basque Euskara"},{"code":"btx","name":"Batak Karo","native":"Cakap Karo","search":"Batak Karo Cakap Karo"},{"code":"bts","name":"Batak Simalungun","native":"Simalungun","search":"Batak Simalungun Simalungun"},{"code":"bbc","name":"Batak Toba","native":"Hata Batak Toba","search":"Batak Toba Hata Batak Toba"},{"code":"be","name":"Belarusian","native":"Беларуская","search":"Belarusian Беларуская"},{"code":"bem","name":"Bemba","native":"Ichibemba","search":"Bemba Ichibemba"},{"code":"bn","name":"Bengali","native":"বাংলা","search":"Bengali বাংলা"},{"code":"bew","name":"Betawi","native":"Bahasa Betawi","search":"Betawi Bahasa Betawi"},{"code":"bho","name":"Bhojpuri","native":"भोजपुरी","search":"Bhojpuri भोजपुरी"},{"code":"bik","name":"Bikol","native":"Bikol","search":"Bikol Bikol"},{"code":"br","name":"Breton","native":"Brezhoneg","search":"Breton Brezhoneg"},{"code":"bg","name":"Bulgarian","native":"Български","search":"Bulgarian Български"},{"code":"bua","name":"Buryat","native":"Буряад","search":"Buryat Буряад"},{"code":"yue","name":"Cantonese","native":"粵語","search":"Cantonese 粵語"},{"code":"ca","name":"Catalan","native":"Català","search":"Catalan Català"},{"code":"ceb","name":"Cebuano","native":"Cebuano","search":"Cebuano Cebuano"},{"code":"ny","name":"Chichewa (Nyanja)","native":"Chichewa","search":"Chichewa (Nyanja) Chichewa"},{"code":"zh-CN","name":"Chinese — Simplified","native":"中文（简体）","search":"Chinese — Simplified 中文（简体）"},{"code":"zh-TW","name":"Chinese — Traditional","native":"中文（繁體）","search":"Chinese — Traditional 中文（繁體）"},{"code":"cv","name":"Chuvash","native":"Чӑвашла","search":"Chuvash Чӑвашла"},{"code":"co","name":"Corsican","native":"Corsu","search":"Corsican Corsu"},{"code":"crh","name":"Crimean Tatar","native":"Qırımtatar tili","search":"Crimean Tatar Qırımtatar tili"},{"code":"hr","name":"Croatian","native":"Hrvatski","search":"Croatian Hrvatski"},{"code":"cs","name":"Czech","native":"Čeština","search":"Czech Čeština"},{"code":"da","name":"Danish","native":"Dansk","search":"Danish Dansk"},{"code":"din","name":"Dinka","native":"Thuɔŋjäŋ","search":"Dinka Thuɔŋjäŋ"},{"code":"dv","name":"Divehi","native":"ދިވެހި","search":"Divehi ދިވެހި"},{"code":"doi","name":"Dogri","native":"डोगरी","search":"Dogri डोगरी"},{"code":"dov","name":"Dombe","native":"Chidombe","search":"Dombe Chidombe"},{"code":"nl","name":"Dutch","native":"Nederlands","search":"Dutch Nederlands"},{"code":"dz","name":"Dzongkha","native":"རྫོང་ཁ","search":"Dzongkha རྫོང་ཁ"},{"code":"eo","name":"Esperanto","native":"Esperanto","search":"Esperanto Esperanto"},{"code":"et","name":"Estonian","native":"Eesti","search":"Estonian Eesti"},{"code":"ee","name":"Ewe","native":"Eʋegbe","search":"Ewe Eʋegbe"},{"code":"fj","name":"Fijian","native":"Na vosa vakaviti","search":"Fijian Na vosa vakaviti"},{"code":"fil","name":"Filipino","native":"Filipino","search":"Filipino Filipino"},{"code":"fi","name":"Finnish","native":"Suomi","search":"Finnish Suomi"},{"code":"fr","name":"French","native":"Français","search":"French Français"},{"code":"fy","name":"Frisian","native":"Frysk","search":"Frisian Frysk"},{"code":"ff","name":"Fulfulde","native":"Fulfulde","search":"Fulfulde Fulfulde"},{"code":"gaa","name":"Ga","native":"Gã","search":"Ga Gã"},{"code":"gl","name":"Galician","native":"Galego","search":"Galician Galego"},{"code":"lg","name":"Ganda (Luganda)","native":"Luganda","search":"Ganda (Luganda) Luganda"},{"code":"ka","name":"Georgian","native":"ქართული","search":"Georgian ქართული"},{"code":"de","name":"German","native":"Deutsch","search":"German Deutsch"},{"code":"el","name":"Greek","native":"Ελληνικά","search":"Greek Ελληνικά"},{"code":"gn","name":"Guarani","native":"Avañe’ẽ","search":"Guarani Avañe’ẽ"},{"code":"gu","name":"Gujarati","native":"ગુજરાતી","search":"Gujarati ગુજરાતી"},{"code":"ht","name":"Haitian Creole","native":"Kreyòl ayisyen","search":"Haitian Creole Kreyòl ayisyen"},{"code":"cnh","name":"Hakha Chin","native":"Laiholh","search":"Hakha Chin Laiholh"},{"code":"ha","name":"Hausa","native":"Hausa","search":"Hausa Hausa"},{"code":"haw","name":"Hawaiian","native":"ʻŌlelo Hawaiʻi","search":"Hawaiian ʻŌlelo Hawaiʻi"},{"code":"he","name":"Hebrew","native":"עברית","search":"Hebrew עברית"},{"code":"hil","name":"Hiligaynon","native":"Hiligaynon","search":"Hiligaynon Hiligaynon"},{"code":"hi","name":"Hindi","native":"हिन्दी","search":"Hindi हिन्दी"},{"code":"hmn","name":"Hmong","native":"Hmoob","search":"Hmong Hmoob"},{"code":"hu","name":"Hungarian","native":"Magyar","search":"Hungarian Magyar"},{"code":"hrx","name":"Hunsrik","native":"Hunsrik","search":"Hunsrik Hunsrik"},{"code":"is","name":"Icelandic","native":"Íslenska","search":"Icelandic Íslenska"},{"code":"ig","name":"Igbo","native":"Igbo","search":"Igbo Igbo"},{"code":"ilo","name":"Iloko","native":"Ilokano","search":"Iloko Ilokano"},{"code":"id","name":"Indonesian","native":"Bahasa Indonesia","search":"Indonesian Bahasa Indonesia"},{"code":"ga","name":"Irish","native":"Gaeilge","search":"Irish Gaeilge"},{"code":"it","name":"Italian","native":"Italiano","search":"Italian Italiano"},{"code":"ja","name":"Japanese","native":"日本語","search":"Japanese 日本語"},{"code":"jv","name":"Javanese","native":"Basa Jawa","search":"Javanese Basa Jawa"},{"code":"kn","name":"Kannada","native":"ಕನ್ನಡ","search":"Kannada ಕನ್ನಡ"},{"code":"pam","name":"Kapampangan","native":"Kapampangan","search":"Kapampangan Kapampangan"},{"code":"kk","name":"Kazakh","native":"Қазақша","search":"Kazakh Қазақша"},{"code":"km","name":"Khmer","native":"ខ្មែរ","search":"Khmer ខ្មែរ"},{"code":"cgg","name":"Kiga","native":"Rukiga","search":"Kiga Rukiga"},{"code":"rw","name":"Kinyarwanda","native":"Kinyarwanda","search":"Kinyarwanda Kinyarwanda"},{"code":"ktu","name":"Kituba","native":"Kikongo ya leta","search":"Kituba Kikongo ya leta"},{"code":"gom","name":"Konkani","native":"कोंकणी","search":"Konkani कोंकणी"},{"code":"ko","name":"Korean","native":"한국어","search":"Korean 한국어"},{"code":"kri","name":"Krio","native":"Krio","search":"Krio Krio"},{"code":"ku","name":"Kurdish (Kurmanji)","native":"Kurdî","search":"Kurdish (Kurmanji) Kurdî"},{"code":"ckb","name":"Kurdish (Sorani)","native":"کوردی","search":"Kurdish (Sorani) کوردی"},{"code":"ky","name":"Kyrgyz","native":"Кыргызча","search":"Kyrgyz Кыргызча"},{"code":"lo","name":"Lao","native":"ລາວ","search":"Lao ລາວ"},{"code":"ltg","name":"Latgalian","native":"Latgalīšu","search":"Latgalian Latgalīšu"},{"code":"la","name":"Latin","native":"Latina","search":"Latin Latina"},{"code":"lv","name":"Latvian","native":"Latviešu","search":"Latvian Latviešu"},{"code":"lij","name":"Ligurian","native":"Ligure","search":"Ligurian Ligure"},{"code":"li","name":"Limburgan","native":"Limburgs","search":"Limburgan Limburgs"},{"code":"ln","name":"Lingala","native":"Lingála","search":"Lingala Lingála"},{"code":"lt","name":"Lithuanian","native":"Lietuvių","search":"Lithuanian Lietuvių"},{"code":"lmo","name":"Lombard","native":"Lombard","search":"Lombard Lombard"},{"code":"luo","name":"Luo","native":"Dholuo","search":"Luo Dholuo"},{"code":"lb","name":"Luxembourgish","native":"Lëtzebuergesch","search":"Luxembourgish Lëtzebuergesch"},{"code":"mk","name":"Macedonian","native":"Македонски","search":"Macedonian Македонски"},{"code":"mai","name":"Maithili","native":"मैथिली","search":"Maithili मैथिली"},{"code":"mak","name":"Makassar","native":"Basa Mangkasaraʼ","search":"Makassar Basa Mangkasaraʼ"},{"code":"mg","name":"Malagasy","native":"Malagasy","search":"Malagasy Malagasy"},{"code":"ms","name":"Malay","native":"Bahasa Melayu","search":"Malay Bahasa Melayu"},{"code":"ms-Arab","name":"Malay (Jawi)","native":"بهاس ملايو","search":"Malay (Jawi) بهاس ملايو"},{"code":"ml","name":"Malayalam","native":"മലയാളം","search":"Malayalam മലയാളം"},{"code":"mt","name":"Maltese","native":"Malti","search":"Maltese Malti"},{"code":"mi","name":"Maori","native":"Te reo Māori","search":"Maori Te reo Māori"},{"code":"mr","name":"Marathi","native":"मराठी","search":"Marathi मराठी"},{"code":"chm","name":"Meadow Mari","native":"Олык марий","search":"Meadow Mari Олык марий"},{"code":"mni-Mtei","name":"Meiteilon (Manipuri)","native":"ꯃꯤꯇꯩꯂꯣꯟ","search":"Meiteilon (Manipuri) ꯃꯤꯇꯩꯂꯣꯟ"},{"code":"min","name":"Minang","native":"Baso Minang","search":"Minang Baso Minang"},{"code":"lus","name":"Mizo","native":"Mizo ṭawng","search":"Mizo Mizo ṭawng"},{"code":"mn","name":"Mongolian","native":"Монгол","search":"Mongolian Монгол"},{"code":"my","name":"Myanmar (Burmese)","native":"မြန်မာ","search":"Myanmar (Burmese) မြန်မာ"},{"code":"nr","name":"Ndebele (South)","native":"isiNdebele","search":"Ndebele (South) isiNdebele"},{"code":"new","name":"Nepalbhasa (Newari)","native":"नेपाल भाषा","search":"Nepalbhasa (Newari) नेपाल भाषा"},{"code":"ne","name":"Nepali","native":"नेपाली","search":"Nepali नेपाली"},{"code":"nso","name":"Northern Sotho","native":"Sepedi","search":"Northern Sotho Sepedi"},{"code":"no","name":"Norwegian","native":"Norsk","search":"Norwegian Norsk"},{"code":"nus","name":"Nuer","native":"Thok Naath","search":"Nuer Thok Naath"},{"code":"oc","name":"Occitan","native":"Occitan","search":"Occitan Occitan"},{"code":"or","name":"Odia (Oriya)","native":"ଓଡ଼ିଆ","search":"Odia (Oriya) ଓଡ଼ିଆ"},{"code":"om","name":"Oromo","native":"Afaan Oromoo","search":"Oromo Afaan Oromoo"},{"code":"pag","name":"Pangasinan","native":"Pangasinan","search":"Pangasinan Pangasinan"},{"code":"pap","name":"Papiamento","native":"Papiamentu","search":"Papiamento Papiamentu"},{"code":"ps","name":"Pashto","native":"پښتو","search":"Pashto پښتو"},{"code":"fa","name":"Persian","native":"فارسی","search":"Persian فارسی"},{"code":"pl","name":"Polish","native":"Polski","search":"Polish Polski"},{"code":"pt","name":"Portuguese","native":"Português","search":"Portuguese Português"},{"code":"pt-PT","name":"Portuguese — Portugal","native":"Português (Portugal)","search":"Portuguese — Portugal Português (Portugal)"},{"code":"pt-BR","name":"Portuguese — Brazil","native":"Português (Brasil)","search":"Portuguese — Brazil Português (Brasil)"},{"code":"pa","name":"Punjabi","native":"ਪੰਜਾਬੀ","search":"Punjabi ਪੰਜਾਬੀ"},{"code":"pa-Arab","name":"Punjabi (Shahmukhi)","native":"پنجابی","search":"Punjabi (Shahmukhi) پنجابی"},{"code":"qu","name":"Quechua","native":"Runa Simi","search":"Quechua Runa Simi"},{"code":"rom","name":"Romani","native":"Romani","search":"Romani Romani"},{"code":"ro","name":"Romanian","native":"Română","search":"Romanian Română"},{"code":"rn","name":"Rundi","native":"Kirundi","search":"Rundi Kirundi"},{"code":"ru","name":"Russian","native":"Русский","search":"Russian Русский"},{"code":"sm","name":"Samoan","native":"Gagana Samoa","search":"Samoan Gagana Samoa"},{"code":"sg","name":"Sango","native":"Sängö","search":"Sango Sängö"},{"code":"sa","name":"Sanskrit","native":"संस्कृतम्","search":"Sanskrit संस्कृतम्"},{"code":"gd","name":"Scots Gaelic","native":"Gàidhlig","search":"Scots Gaelic Gàidhlig"},{"code":"sr","name":"Serbian","native":"Српски","search":"Serbian Српски"},{"code":"st","name":"Sesotho","native":"Sesotho","search":"Sesotho Sesotho"},{"code":"crs","name":"Seychellois Creole","native":"Kreol Seselwa","search":"Seychellois Creole Kreol Seselwa"},{"code":"shn","name":"Shan","native":"ၽႃႇသႃႇတႆး","search":"Shan ၽႃႇသႃႇတႆး"},{"code":"sn","name":"Shona","native":"ChiShona","search":"Shona ChiShona"},{"code":"scn","name":"Sicilian","native":"Sicilianu","search":"Sicilian Sicilianu"},{"code":"szl","name":"Silesian","native":"Ślōnskŏ gŏdka","search":"Silesian Ślōnskŏ gŏdka"},{"code":"sd","name":"Sindhi","native":"سنڌي","search":"Sindhi سنڌي"},{"code":"si","name":"Sinhala","native":"සිංහල","search":"Sinhala සිංහල"},{"code":"sk","name":"Slovak","native":"Slovenčina","search":"Slovak Slovenčina"},{"code":"sl","name":"Slovenian","native":"Slovenščina","search":"Slovenian Slovenščina"},{"code":"so","name":"Somali","native":"Soomaali","search":"Somali Soomaali"},{"code":"es","name":"Spanish","native":"Español","search":"Spanish Español"},{"code":"su","name":"Sundanese","native":"Basa Sunda","search":"Sundanese Basa Sunda"},{"code":"sw","name":"Swahili","native":"Kiswahili","search":"Swahili Kiswahili"},{"code":"ss","name":"Swati","native":"SiSwati","search":"Swati SiSwati"},{"code":"sv","name":"Swedish","native":"Svenska","search":"Swedish Svenska"},{"code":"tg","name":"Tajik","native":"Тоҷикӣ","search":"Tajik Тоҷикӣ"},{"code":"ta","name":"Tamil","native":"தமிழ்","search":"Tamil தமிழ்"},{"code":"tt","name":"Tatar","native":"Татарча","search":"Tatar Татарча"},{"code":"te","name":"Telugu","native":"తెలుగు","search":"Telugu తెలుగు"},{"code":"tet","name":"Tetum","native":"Tetun","search":"Tetum Tetun"},{"code":"th","name":"Thai","native":"ไทย","search":"Thai ไทย"},{"code":"ti","name":"Tigrinya","native":"ትግርኛ","search":"Tigrinya ትግርኛ"},{"code":"ts","name":"Tsonga","native":"Xitsonga","search":"Tsonga Xitsonga"},{"code":"tn","name":"Tswana","native":"Setswana","search":"Tswana Setswana"},{"code":"tr","name":"Turkish","native":"Türkçe","search":"Turkish Türkçe"},{"code":"tk","name":"Turkmen","native":"Türkmençe","search":"Turkmen Türkmençe"},{"code":"ak","name":"Twi (Akan)","native":"Twi","search":"Twi (Akan) Twi"},{"code":"uk","name":"Ukrainian","native":"Українська","search":"Ukrainian Українська"},{"code":"ur","name":"Urdu","native":"اردو","search":"Urdu اردو"},{"code":"ug","name":"Uyghur","native":"ئۇيغۇرچە","search":"Uyghur ئۇيغۇرچە"},{"code":"uz","name":"Uzbek","native":"Oʻzbekcha","search":"Uzbek Oʻzbekcha"},{"code":"vi","name":"Vietnamese","native":"Tiếng Việt","search":"Vietnamese Tiếng Việt"},{"code":"cy","name":"Welsh","native":"Cymraeg","search":"Welsh Cymraeg"},{"code":"xh","name":"Xhosa","native":"isiXhosa","search":"Xhosa isiXhosa"},{"code":"yi","name":"Yiddish","native":"ייִדיש","search":"Yiddish ייִדיש"},{"code":"yo","name":"Yoruba","native":"Yorùbá","search":"Yoruba Yorùbá"},{"code":"yua","name":"Yucatec Maya","native":"Maaya t’aan","search":"Yucatec Maya Maaya t’aan"},{"code":"zu","name":"Zulu","native":"isiZulu","search":"Zulu isiZulu"}];
+    const manualLanguages = [
+      {id:'bs',name:'Montenegro',native:'Crnogorski',description:'Crnogorski · latinica'},
+      {id:'al',name:'Albania',native:'Shqip',description:'Shqip'},
+      {id:'en',name:'English',native:'English',description:'English'}
+    ];
+
+    const languageCountries = {
+      bs:'ME', en:'GB', al:'AL',
+      ab:'GE', ace:'ID', ach:'UG', af:'ZA', sq:'AL', alz:'KE', am:'ET', ar:'SA', hy:'AM', as:'IN', awa:'IN', ay:'BO', az:'AZ',
+      ban:'ID', bm:'ML', ba:'RU', eu:'ES', btx:'ID', bts:'ID', bbc:'ID', be:'BY', bem:'ZM', bn:'BD', bew:'ID', bho:'IN', bik:'PH',
+      br:'FR', bg:'BG', bua:'RU', yue:'HK', ca:'ES', ceb:'PH', ny:'MW', 'zh-CN':'CN', 'zh-TW':'TW', cv:'RU', co:'FR', crh:'UA',
+      hr:'HR', cs:'CZ', da:'DK', din:'SS', dv:'MV', doi:'IN', dov:'ZW', nl:'NL', dz:'BT', eo:'UN', et:'EE', ee:'GH', fj:'FJ',
+      fil:'PH', fi:'FI', fr:'FR', fy:'NL', ff:'GN', gaa:'GH', gl:'ES', lg:'UG', ka:'GE', de:'DE', el:'GR', gn:'PY', gu:'IN',
+      ht:'HT', cnh:'MM', ha:'NG', haw:'US', he:'IL', hil:'PH', hi:'IN', hmn:'CN', hu:'HU', hrx:'BR', is:'IS', ig:'NG', ilo:'PH',
+      id:'ID', ga:'IE', it:'IT', ja:'JP', jv:'ID', kn:'IN', pam:'PH', kk:'KZ', km:'KH', cgg:'UG', rw:'RW', ktu:'CD', gom:'IN',
+      ko:'KR', kri:'SL', ku:'TR', ckb:'IQ', ky:'KG', lo:'LA', ltg:'LV', la:'VA', lv:'LV', lij:'IT', li:'NL', ln:'CD', lt:'LT',
+      lmo:'IT', luo:'KE', lb:'LU', mk:'MK', mai:'IN', mak:'ID', mg:'MG', ms:'MY', 'ms-Arab':'MY', ml:'IN', mt:'MT', mi:'NZ',
+      mr:'IN', chm:'RU', 'mni-Mtei':'IN', min:'ID', lus:'IN', mn:'MN', my:'MM', nr:'ZA', new:'NP', ne:'NP', nso:'ZA', no:'NO',
+      nus:'SS', oc:'FR', or:'IN', om:'ET', pag:'PH', pap:'CW', ps:'AF', fa:'IR', pl:'PL', pt:'PT', 'pt-PT':'PT', 'pt-BR':'BR',
+      pa:'IN', 'pa-Arab':'PK', qu:'PE', rom:'RO', ro:'RO', rn:'BI', ru:'RU', sm:'WS', sg:'CF', sa:'IN', gd:'GB', sr:'RS', st:'LS',
+      crs:'SC', shn:'MM', sn:'ZW', scn:'IT', szl:'PL', sd:'PK', si:'LK', sk:'SK', sl:'SI', so:'SO', es:'ES', su:'ID', sw:'TZ',
+      ss:'SZ', sv:'SE', tg:'TJ', ta:'IN', tt:'RU', te:'IN', tet:'TL', th:'TH', ti:'ER', ts:'ZA', tn:'BW', tr:'TR', tk:'TM',
+      ak:'GH', uk:'UA', ur:'PK', ug:'CN', uz:'UZ', vi:'VN', cy:'GB', xh:'ZA', yi:'IL', yo:'NG', yua:'MX', zu:'ZA'
+    };
+    function countryFlag(countryCode) {
+      if (!countryCode || countryCode === 'UN') return '🌐';
+      return [...countryCode.toUpperCase()].map(char => String.fromCodePoint(127397 + char.charCodeAt(0))).join('');
+    }
+    function languageFlag(code) {
+      return countryFlag(languageCountries[code] || 'UN');
+    }
+
+    function normalizeMenu(source) {
+      const normalized = JSON.parse(JSON.stringify(Array.isArray(source) ? source : []));
+      normalized.forEach(section => {
+        section.groups = Array.isArray(section.groups) ? section.groups : [];
+        section.groups.forEach(group => { group.items = Array.isArray(group.items) ? group.items : []; });
+        section.count = section.groups.reduce((total, group) => total + group.items.length, 0);
+      });
+      return normalized;
+    }
+    menu = normalizeMenu(menu);
+    const DEFAULT_MENU = JSON.parse(JSON.stringify(menu));
+    let siteInfo = {
+      restaurantName:'Katun Maja Karanfil',
+      location:'Grebaje · Gusinje',
+      instagramUrl:'https://www.instagram.com/katun.maja.karanfil?igsh=MTM2Z2FpY294a3h0ZA==',
+      guestNoticeBs:'', guestNoticeAl:'', guestNoticeEn:''
+    };
+    const storedLanguage = localStorage.getItem('kmkMenuLanguage');
+    let lang = ['bs','al','en'].includes(storedLanguage) ? storedLanguage : 'bs';
+    let selected = null;
+    let query = '';
+    const $ = s => document.querySelector(s);
+    const home = $('#home'), catalog = $('#catalog'), results = $('#results'), search = $('#search'), clear = $('#clear');
+    const t = k => (copy[lang] || copy.bs)[k] || '';
+    const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+    const value = (item, base) => item[lang === 'bs' ? base+'Bs' : lang === 'en' ? base+'En' : base+'Al'];
+    const title = item => item[lang];
+    const categoryTitle = sec => sec[lang];
+    function flatItems() { return menu.flatMap(sec => sec.groups.flatMap(group => group.items.map(item => ({sec,group,item})))); }
+    function meta(text) {
+      const m = String(text).match(/(?:\d+(?:[,.]\d+)?\s?(?:kg|g|ml|l)|\d+\s?(?:komada|komad|pieces|piece|copë))/gi);
+      return m ? m.slice(0,2).join(' · ') : t('details');
+    }
+    function badges(item) { const b = value(item,'badge'); return b ? `<span class="badge">${esc(b)}</span>` : ''; }
+    function priceText(item) {
+      if (item && item.priceMode === 'pension') return '';
+      if (item && item.priceMode === 'quote') return lang === 'en' ? 'On request' : lang === 'al' ? 'Me kërkesë' : 'Na upit';
+      return item && item.price ? `${item.price} €` : '';
+    }
+    function dishCard(item) {
+      const detail = value(item,'detail') || '';
+      const currentPrice = priceText(item);
+      const image = item.imageUrl ? `<img class="dish-photo" src="${esc(item.imageUrl)}" alt="${esc(title(item))}" loading="lazy">` : '';
+      return `<article class="dish" data-dish-id="${esc(item.id || '')}"><button class="dish-top" aria-expanded="false"><span class="dish-name"><strong>${esc(title(item))}</strong><small>${esc(meta(detail))}</small></span><span class="price">${esc(currentPrice)}</span><span class="chevron">⌄</span></button><div class="detail">${image}${detail ? `<p>${esc(detail)}</p>` : ''}${badges(item)}</div></article>`;
+    }
+    function bindDishes(root) { root.querySelectorAll('.dish-top').forEach(b=>b.addEventListener('click',()=>{const d=b.closest('.dish');const open=d.classList.toggle('open');b.setAttribute('aria-expanded',String(open));})); }
+    function renderStatic() {
+      document.documentElement.lang = lang;
+      $('#eyebrow').textContent=t('eyebrow');$('#heroTitle').textContent=t('heroTitle');$('#heroText').textContent=t('heroText');
+      $('#introTitle').textContent=t('introTitle');$('#introText').textContent=t('introText');$('#instagramKicker').textContent=t('instagramKicker');$('#instagramTitle').textContent=t('instagramTitle');$('#instagramText').textContent=t('instagramText');$('#instagramButton').textContent=t('instagramButton');$('#instagramStatus').textContent=t('instagramStatus');$('#recommendTitle').textContent=t('recommendTitle');$('#recommendSub').textContent=t('recommendSub');$('#categoriesTitle').textContent=t('categoriesTitle');$('#categoriesSub').textContent=t('categoriesSub');$('#stayBadge').textContent=t('stayBadge');$('#stayTitle').textContent=t('stayTitle');$('#stayText').textContent=t('stayText');$('#stayViber').textContent=t('stayViber');$('#stayWhatsapp').textContent=t('stayWhatsapp');$('#footer').textContent=t('footer');
+      if (instagramFeedData !== undefined) renderInstagramFeed(instagramFeedData);
+      renderLanguagePicker();
+    }
+    let instagramFeedData;
+    const instagramProfileUrl = 'https://www.instagram.com/katun.maja.karanfil?igsh=MTM2Z2FpY294a3h0ZA==';
+    function compactCaption(text) {
+      return String(text || '').replace(/\s+/g,' ').trim().slice(0,74);
+    }
+    function renderInstagramFeed(items) {
+      const feed = $('#instagramFeed');
+      if (!feed) return;
+      const posts = Array.isArray(items) ? items.filter(item => item && item.image && item.permalink).slice(0,6) : [];
+      feed.setAttribute('aria-busy','false');
+      if (!posts.length) {
+        feed.innerHTML = `<a class="instagram-feed-empty" href="${instagramProfileUrl}" target="_blank" rel="noopener noreferrer"><i>📷</i><span><strong>${esc(t('instagramEmptyTitle'))}</strong><span>${esc(t('instagramEmptyText'))}</span></span></a>`;
+        return;
+      }
+      feed.innerHTML = posts.map(item => {
+        const isVideo = item.media_type === 'VIDEO' || item.is_video === true;
+        const label = isVideo ? 'REEL' : 'INSTAGRAM';
+        const caption = compactCaption(item.caption);
+        return `<a class="instagram-card" href="${esc(item.permalink)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(caption || 'Instagram @katun.maja.karanfil')}"><img src="${esc(item.image)}" alt="${esc(caption || 'Katun Maja Karanfil – Grebaje')}" loading="lazy">${isVideo ? '<span class="instagram-card-play" aria-hidden="true">▶</span>' : ''}${caption ? `<span class="instagram-card-caption">${esc(caption)}</span>` : `<span class="instagram-card-label">${label}</span>`}</a>`;
+      }).join('');
+    }
+    async function loadInstagramFeed() {
+      try {
+        const response = await fetch('./instagram-feed.json', {cache:'force-cache'});
+        if (!response.ok) throw new Error('Instagram feed not available');
+        const data = await response.json();
+        instagramFeedData = data.items || [];
+      } catch (error) {
+        instagramFeedData = [];
+      }
+      renderInstagramFeed(instagramFeedData);
+    }
+    function getNamed(section,name) { return menu.find(s=>s.id===section).groups.flatMap(g=>g.items).find(i=>i.bs===name); }
+    function renderHome() {
+      $('#recommendations').innerHTML = recs.map(r=>{const item=getNamed(r.section,r.name);return `<button class="recommendation" data-section="${r.section}"><em>${r.emoji}</em><small>${esc(t('recommendTitle'))}</small><strong>${esc(title(item))}</strong><b>${esc(item.price)} €</b></button>`;}).join('');
+      $('#categories').innerHTML = menu.map(sec=>`<button class="category" data-section="${sec.id}"><span class="emoji">${sec.icon}</span><span><strong>${esc(categoryTitle(sec))}</strong><small>${sec.count} ${t('items')}</small></span></button>`).join('');
+      document.querySelectorAll('[data-section]').forEach(b=>b.addEventListener('click',()=>{query='';if(search) search.value='';if(clear) clear.classList.remove('show');openSection(b.dataset.section)}));
+    }
+    function openSection(id) {
+      selected=id;home.classList.add('hidden');results.classList.add('hidden');catalog.classList.remove('hidden');
+      const sec=menu.find(s=>s.id===id);
+      catalog.innerHTML=`<div class="backrow"><button class="back" aria-label="${esc(t('back'))}">←</button><div><h2>${esc(categoryTitle(sec))}</h2><p>${sec.count} ${t('items')}</p></div></div>${sec.groups.map(g=>`<div class="group"><h3>${esc(g[lang])}</h3><div class="items">${g.items.map(dishCard).join('')}</div></div>`).join('')}`;
+      catalog.querySelector('.back').addEventListener('click',showHome);bindDishes(catalog);window.scrollTo({top:0,behavior:'smooth'});
+    }
+    function showHome() {selected=null;query='';if(search) search.value='';if(clear) clear.classList.remove('show');catalog.classList.add('hidden');results.classList.add('hidden');home.classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});}
+    function renderResults() {
+      const q=query.toLocaleLowerCase();
+      const groups=[];
+      for(const sec of menu){const found=sec.groups.flatMap(g=>g.items).filter(item=>[item.bs,item.en,item.al,item.detailBs,item.detailEn,item.detailAl,item.badgeBs,item.badgeEn,item.badgeAl].filter(Boolean).join(' ').toLocaleLowerCase().includes(q));if(found.length)groups.push({sec,found});}
+      home.classList.add('hidden');catalog.classList.add('hidden');results.classList.remove('hidden');
+      if(!groups.length){results.innerHTML=`<div class="empty"><i>⌕</i><strong>${esc(t('emptyTitle'))}</strong><p>${esc(t('emptyText'))}</p></div>`;return;}
+      results.innerHTML=`<h2 class="search-title">${esc(t('resultTitle'))}</h2>${groups.map(g=>`<section class="search-section"><h3>${esc(categoryTitle(g.sec))}</h3><div class="items">${g.found.map(dishCard).join('')}</div></section>`).join('')}`;
+      bindDishes(results);
+    }
+
+    const languageOpen = $('#languageOpen'), languageOverlay = $('#languageOverlay'), languageClose = $('#languageClose'), manualLanguagesBox = $('#manualLanguages'), allLanguagesBox = $('#allLanguages');
+    const languageText = () => languageUI[lang] || languageUI.bs;
+    const isManual = id => manualLanguages.some(item => item.id === id);
+    function renderLanguagePicker() {
+      const ui = languageText();
+      const current = manualLanguages.find(item => item.id === lang) || manualLanguages[0];
+      $('#languageButtonFlag').textContent = languageFlag(current.id);
+      const shortCode = {bs:'MNE', al:'AL', en:'EN'}; $('#languageButtonLabel').textContent = (shortCode[lang] || 'MNE') + ' · ' + ui.button;
+      $('#languageTitle').textContent = ui.title;
+      $('#languageKicker').textContent = ui.kicker;
+      $('#languageNote').textContent = ui.note;
+      $('#manualLanguagesTitle').textContent = ui.manual;
+      $('#manualLanguagesMeta').textContent = ui.manualMeta;
+      $('#allLanguagesTitle').textContent = ui.all;
+      $('#allLanguagesMeta').textContent = ui.allMeta;
+      languageClose.setAttribute('aria-label', lang === 'al' ? 'Mbyll' : lang === 'en' ? 'Close' : 'Zatvori');
+      renderLanguageLists();
+    }
+    function languageRow(item, type) {
+      const ui = languageText();
+      const selectedClass = type === 'manual' && item.id === lang ? ' selected' : '';
+      const typeLabel = type === 'manual' ? ui.hand : ui.auto;
+      const code = type === 'manual' ? item.id : item.code;
+      const name = item.name;
+      const native = type === 'manual' ? item.description : item.native;
+      return `<button class="language-row${selectedClass}" type="button" data-language-kind="${type}" data-language-code="${esc(code)}"><span class="language-left"><span class="language-flag" aria-hidden="true">${languageFlag(code)}</span><span class="language-name"><strong>${esc(name)}</strong><small>${esc(native)}</small></span></span><span class="language-type${type === 'auto' ? ' auto' : ''}">${esc(typeLabel)}</span></button>`;
+    }
+    function renderLanguageLists() {
+      const manual = manualLanguages;
+      const automatic = worldLanguages.filter(item => item.code !== 'bs' && item.code !== 'en' && item.code !== 'sq');
+      manualLanguagesBox.innerHTML = manual.map(item => languageRow(item,'manual')).join('');
+      allLanguagesBox.innerHTML = automatic.map(item => languageRow(item,'auto')).join('');
+    }
+    function openLanguagePicker() {
+      languageOverlay.classList.add('open');
+      languageOverlay.setAttribute('aria-hidden','false');
+      document.body.classList.add('language-sheet-open');
+      renderLanguagePicker();
+    }
+    function closeLanguagePicker() {
+      languageOverlay.classList.remove('open');
+      languageOverlay.setAttribute('aria-hidden','true');
+      document.body.classList.remove('language-sheet-open');
+    }
+    function chooseManualLanguage(next) {
+      if (!copy[next]) return;
+      lang = next;
+      localStorage.setItem('kmkMenuLanguage',lang);
+      renderStatic();
+      renderHome();
+      if(selected) openSection(selected); else renderHome();
+      closeLanguagePicker();
+    }
+    function openAutomaticTranslation(code) {
+      // The original Bosnian page is intentionally used as the source to keep the menu data consistent.
+      localStorage.setItem('kmkMenuLanguage','bs');
+      const original = window.location.href.split('#')[0];
+      if (window.location.protocol === 'file:') {
+        $('#languageNote').textContent = 'Automatski prevod će raditi kada ovaj meni postaviš na GitHub Pages i otvoriš preko javnog linka.';
+        return;
+      }
+      const target = `https://translate.google.com/translate?sl=bs&tl=${encodeURIComponent(code)}&u=${encodeURIComponent(original)}`;
+      window.location.assign(target);
+    }
+    languageOpen.addEventListener('click',openLanguagePicker);
+    languageClose.addEventListener('click',closeLanguagePicker);
+    languageOverlay.addEventListener('click',event=>{ if(event.target === languageOverlay) closeLanguagePicker(); });
+    document.addEventListener('keydown',event=>{ if(event.key === 'Escape' && languageOverlay.classList.contains('open')) closeLanguagePicker(); });
+    [manualLanguagesBox,allLanguagesBox].forEach(box=>box.addEventListener('click',event=>{
+      const button = event.target.closest('[data-language-code]');
+      if(!button) return;
+      if(button.dataset.languageKind === 'manual') chooseManualLanguage(button.dataset.languageCode);
+      else openAutomaticTranslation(button.dataset.languageCode);
+    }));
+
+
+    /* ===== FIREBASE BACKEND + FULL ADMINISTRATION =====
+       Firebase configuration lives in firebase-config.js. The web config itself is not
+       a password; Firestore and Storage rules below are what protect write access.
+    */
+    const KMK_FIREBASE_CONFIG = window.KMK_FIREBASE_CONFIG || {
+      apiKey:'', authDomain:'', projectId:'', storageBucket:'', messagingSenderId:'', appId:''
+    };
+    const FIREBASE_VERSION = '11.10.0';
+    const firebaseReady = () => Boolean(KMK_FIREBASE_CONFIG.apiKey && KMK_FIREBASE_CONFIG.authDomain && KMK_FIREBASE_CONFIG.projectId && KMK_FIREBASE_CONFIG.appId);
+    let firebaseLib = null, firebaseApp = null, firebaseAuth = null, firebaseDb = null, firebaseStorage = null, firebaseUser = null, firebaseStarted = false, firestoreUnsubscribe = null;
+    let adminView = 'dashboard', adminEditor = null, adminNotice = null, adminBusy = false;
+
+    const adminOverlay = $('#adminOverlay'), adminOpen = $('#adminOpen'), adminClose = $('#adminClose'), adminContent = $('#adminContent');
+    const clone = value => JSON.parse(JSON.stringify(value));
+    const slug = value => String(value || '').toLocaleLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'') || 'stavka';
+    const newId = (prefix, value='') => `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2,7)}${value ? '-' + slug(value) : ''}`;
+    const defaultGroupTitle = section => ({bs:section.bs || 'Ponuda', en:section.en || 'Selection', al:section.al || 'Oferta'});
+
+    function ensureMenuSchema(source) {
+      return (Array.isArray(source) ? source : []).map((section, sIndex) => {
+        const sectionId = section.id || `category-${sIndex}-${slug(section.bs)}`;
+        const normalizedGroups = (Array.isArray(section.groups) ? section.groups : []).map((group, gIndex) => {
+          const groupId = group.id || `group-${slug(sectionId)}-${gIndex}-${slug(group.bs)}`;
+          const normalizedItems = (Array.isArray(group.items) ? group.items : []).map((item, iIndex) => {
+            const itemId = item.id || `dish-${slug(sectionId)}-${gIndex}-${iIndex}-${slug(item.bs)}`;
+            const priceMode = sectionId === 'pension-menu' ? 'pension' : (item.priceMode || 'standard');
+            return {
+              ...item,
+              id:itemId,
+              priceMode,
+              price:priceMode === 'pension' ? '' : String(item.price || ''),
+              active:item.active !== false,
+              featured:item.featured === true,
+              imageUrl:String(item.imageUrl || ''),
+              imagePath:String(item.imagePath || '')
+            };
+          });
+          return {...group, id:groupId, items:normalizedItems};
+        });
+        const groups = normalizedGroups.length ? normalizedGroups : [{id:`group-${slug(sectionId)}-main`, ...defaultGroupTitle(section), items:[]}];
+        return {...section, id:sectionId, groups, count:groups.reduce((sum,g)=>sum+g.items.length,0)};
+      });
+    }
+    function refreshCounts(){ menu = ensureMenuSchema(menu); }
+    function activeGroups(section) { return (section.groups || []).map(group => ({...group, items:(group.items || []).filter(item => item.active !== false)})).filter(group => group.items.length); }
+    function activeCount(section) { return activeGroups(section).reduce((total, group) => total + group.items.length, 0); }
+    function activeSections() { return menu.filter(section => activeCount(section) > 0); }
+    function findDishById(id) { for (const section of menu) for (const group of section.groups || []) for (const item of group.items || []) if (item.id === id) return {section,group,item}; return null; }
+    function findSection(id){ return menu.find(section=>section.id===id) || null; }
+    function findGroup(sectionId,groupId){ const section=findSection(sectionId); const group=section && (section.groups||[]).find(group=>group.id===groupId); return section && group ? {section,group} : null; }
+    function defaultSiteInfo() {
+      return {
+        restaurantName:'Katun Maja Karanfil', location:'Grebaje · Gusinje', instagramUrl:'https://www.instagram.com/katun.maja.karanfil?igsh=MTM2Z2FpY294a3h0ZA==',
+        guestNoticeBs:'', guestNoticeAl:'', guestNoticeEn:'',
+        stayBadgeBs:'Smještaj u Grebajama', stayBadgeEn:'Stay in Grebaje', stayBadgeAl:'Akomodim në Grebaje',
+        stayTitleBs:'Ostanite duže u srcu Prokletija.', stayTitleEn:'Stay longer in the heart of Prokletije.', stayTitleAl:'Qëndroni më gjatë në zemër të Bjeshkëve të Nemuna.',
+        stayTextBs:'Bungalovi Katun Maja Karanfil mogu se rezervisati direktno putem Vibera ili WhatsAppa. Pišite nam za slobodne termine i informacije o smještaju.',
+        stayTextEn:'Katun Maja Karanfil bungalows can be booked directly via Viber or WhatsApp. Message us for availability and accommodation information.',
+        stayTextAl:'Bungalot e Katun Maja Karanfil mund të rezervohen drejtpërdrejt përmes Viber ose WhatsApp. Na shkruani për termine të lira dhe informacione për akomodimin.',
+        viberNumber:'38267623634', whatsappNumber:'38267623634'
+      };
+    }
+    function localisedInfo(info, base) { return info[lang === 'en' ? base+'En' : lang === 'al' ? base+'Al' : base+'Bs'] || ''; }
+    function digits(value){ return String(value || '').replace(/\D/g,''); }
+    function applySiteInfo() {
+      const info = {...defaultSiteInfo(), ...(siteInfo || {})};
+      const brandStrong = document.querySelector('.brand strong'), brandSpan = document.querySelector('.brand span');
+      if (brandStrong) brandStrong.textContent = info.restaurantName || 'Katun Maja Karanfil';
+      if (brandSpan) brandSpan.textContent = info.location || 'Grebaje · Gusinje';
+      const url = info.instagramUrl || defaultSiteInfo().instagramUrl;
+      ['instagramLink','instagramFooterLink'].forEach(id=>{ const el=$('#'+id); if(el) el.href=url; });
+      const notice = localisedInfo(info,'guestNotice');
+      const daily = $('#dailyNotice'), dailyTitle = $('#dailyNoticeTitle'), dailyText = $('#dailyNoticeText');
+      if (daily && dailyTitle && dailyText) { dailyTitle.textContent = lang === 'al' ? 'Sot.' : lang === 'en' ? 'Today.' : 'Danas.'; dailyText.textContent = notice || ''; daily.classList.toggle('hidden', !notice); }
+      const stayBadge=$('#stayBadge'), stayTitle=$('#stayTitle'), stayText=$('#stayText'), stayViber=$('#stayViber'), stayWhatsapp=$('#stayWhatsapp');
+      if(stayBadge) stayBadge.textContent=localisedInfo(info,'stayBadge') || t('stayBadge');
+      if(stayTitle) stayTitle.textContent=localisedInfo(info,'stayTitle') || t('stayTitle');
+      if(stayText) stayText.textContent=localisedInfo(info,'stayText') || t('stayText');
+      const viber = digits(info.viberNumber) || '38267623634';
+      const whatsapp = digits(info.whatsappNumber) || viber;
+      if(stayViber) stayViber.href=`viber://chat?number=%2B${viber}`;
+      if(stayWhatsapp) stayWhatsapp.href=`https://wa.me/${whatsapp}`;
+    }
+    const baseRenderStatic = renderStatic;
+    renderStatic = function() { baseRenderStatic(); applySiteInfo(); };
+    function redrawPublicMenu() { refreshCounts(); renderStatic(); if (selected) openSection(selected); else renderHome(); }
+
+    /* Public menu: categories stay where the guest currently is; only a clicked recommendation scrolls to its own dish. */
+    function featuredItems(){ return flatItems().filter(({item})=>item.active!==false && item.featured===true); }
+    function renderHome(){
+      const featured=featuredItems(); const block=$('#recommendationsBlock'); if(block) block.classList.toggle('hidden',featured.length===0);
+      const recommendations=$('#recommendations');
+      if(recommendations) recommendations.innerHTML=featured.map(({item})=>{const currentPrice=priceText(item);return `<button class="recommendation" data-featured-id="${esc(item.id)}"><em>✦</em><small>${esc(t('recommendTitle'))}</small><strong>${esc(title(item))}</strong>${currentPrice?`<b>${esc(currentPrice)}</b>`:''}</button>`;}).join('');
+      const categories=$('#categories');
+      if(categories) categories.innerHTML=activeSections().map(section=>`<button class="category" data-section="${esc(section.id)}"><span class="emoji">${esc(section.icon)}</span><span><strong>${esc(categoryTitle(section))}</strong><small>${activeCount(section)} ${esc(t('items'))}</small></span></button>`).join('');
+      document.querySelectorAll('[data-section]').forEach(button=>button.addEventListener('click',()=>openSection(button.dataset.section)));
+      document.querySelectorAll('[data-featured-id]').forEach(button=>button.addEventListener('click',()=>openDishById(button.dataset.featuredId)));
+    }
+    function openDishById(id){ const found=findDishById(id); if(!found || found.item.active===false) return; openSection(found.section.id,found.item.id); }
+    function openSection(id,openDishId=''){
+      selected=id; home.classList.add('hidden'); catalog.classList.remove('hidden'); const section=findSection(id); if(!section) return showHome();
+      const groups=activeGroups(section);
+      catalog.innerHTML=`<div class="backrow"><button class="back" aria-label="${esc(t('back'))}">←</button><div><h2>${esc(categoryTitle(section))}</h2><p>${activeCount(section)} ${esc(t('items'))}</p></div></div>${groups.map(group=>`<div class="group"><h3>${esc(group[lang])}</h3><div class="items">${group.items.map(dishCard).join('')}</div></div>`).join('')}`;
+      catalog.querySelector('.back').addEventListener('click',showHome); bindDishes(catalog);
+      const target=openDishId ? Array.from(catalog.querySelectorAll('.dish')).find(card=>card.dataset.dishId===openDishId) : null;
+      if(target){ const toggle=target.querySelector('.dish-top'); target.classList.add('open'); if(toggle)toggle.setAttribute('aria-expanded','true'); requestAnimationFrame(()=>target.scrollIntoView({block:'center',behavior:'smooth'})); }
+    }
+    function showHome(){ selected=null; catalog.classList.add('hidden'); home.classList.remove('hidden'); window.scrollTo({top:0,behavior:'smooth'}); }
+
+    async function loadFirebase(){
+      if(!firebaseReady()) return null;
+      if(firebaseStarted) return firebaseLib;
+      firebaseStarted=true;
+      try{
+        const [appMod,authMod,firestoreMod,storageMod]=await Promise.all([
+          import(`https://www.gstatic.com/firebasejs/${FIREBASE_VERSION}/firebase-app.js`),
+          import(`https://www.gstatic.com/firebasejs/${FIREBASE_VERSION}/firebase-auth.js`),
+          import(`https://www.gstatic.com/firebasejs/${FIREBASE_VERSION}/firebase-firestore.js`),
+          import(`https://www.gstatic.com/firebasejs/${FIREBASE_VERSION}/firebase-storage.js`)
+        ]);
+        firebaseLib={...appMod,...authMod,...firestoreMod,...storageMod};
+        firebaseApp=firebaseLib.initializeApp(KMK_FIREBASE_CONFIG);
+        firebaseAuth=firebaseLib.getAuth(firebaseApp);
+        firebaseDb=firebaseLib.getFirestore(firebaseApp);
+        firebaseStorage=KMK_FIREBASE_CONFIG.storageBucket ? firebaseLib.getStorage(firebaseApp) : null;
+        firebaseLib.onAuthStateChanged(firebaseAuth,user=>{firebaseUser=user; if(adminOverlay.classList.contains('open')) renderAdmin();});
+        firestoreUnsubscribe=firebaseLib.onSnapshot(firebaseLib.doc(firebaseDb,'menu','current'),snapshot=>{
+          if(!snapshot.exists()) return;
+          const data=snapshot.data()||{};
+          if(Array.isArray(data.menu)){ menu=ensureMenuSchema(normalizeMenu(data.menu)); siteInfo={...defaultSiteInfo(),...(data.siteInfo||{})}; redrawPublicMenu(); }
+        },error=>console.warn('Menu sync error:',error));
+        return firebaseLib;
+      }catch(error){ firebaseStarted=false; console.error(error); throw error; }
+    }
+    async function startFirebasePublic(){ if(firebaseReady()) try{ await loadFirebase(); }catch(error){ console.warn('Firebase nije povezan:',error); } }
+
+    function openAdminPanel(){ adminOverlay.classList.add('open'); adminOverlay.setAttribute('aria-hidden','false'); document.body.classList.add('admin-open'); renderAdmin(); }
+    function closeAdminPanel(){ adminOverlay.classList.remove('open'); adminOverlay.setAttribute('aria-hidden','true'); document.body.classList.remove('admin-open'); adminNotice=null; }
+    function setAdminNotice(type,title,text){ adminNotice={type,title,text}; }
+    function renderNotice(){ return adminNotice?`<div class="admin-alert ${esc(adminNotice.type||'')}"><strong>${esc(adminNotice.title)}</strong>${esc(adminNotice.text)}</div>`:''; }
+    function renderAdmin(){
+      if(!firebaseReady()) return renderAdminSetup();
+      if(!firebaseLib){ renderAdminLoading(); loadFirebase().then(renderAdmin).catch(()=>{setAdminNotice('error','Povezivanje nije uspjelo','Provjeri firebase-config.js i pokušaj ponovo.');renderAdminLogin();}); return; }
+      if(!firebaseUser) return renderAdminLogin();
+      renderAdminDashboard();
+    }
+    function renderAdminSetup(){
+      adminContent.innerHTML=`<div class="admin-hero"><p class="admin-overline">Administracija je spremna</p><h3>Poveži svoju sigurnu bazu.</h3><p>Ovaj meni je pripremljen za prijavu, slike, cijene, kategorije, preporuke i promjene uživo.</p></div><div class="admin-alert"><strong>Potrebna su još tri koraka</strong>U istom folderu dodaj firebase-config.js, u Firebase konzoli uključi Authentication, Firestore i Storage, zatim objavi pravila iz paketa koji je uz ovaj index.</div><div class="admin-card"><h3>Šta dobijaš nakon povezivanja</h3><p class="subcopy">Samo se prijaviš svojim emailom: dodaješ i brišeš kategorije i podkategorije, mijenjaš sva jela i cijene, postavljaš preporuke, skrivaš ono čega nema, dodaješ fotografije i vraćaš rezervnu kopiju.</p></div>`;
+    }
+    function renderAdminLoading(){ adminContent.innerHTML=`<div class="admin-hero"><p class="admin-overline">Administracija</p><h3>Učitavam siguran panel…</h3><p>Povezivanje sa bazom i slikama.</p></div>`; }
+    function renderAdminLogin(){
+      adminContent.innerHTML=`<div class="admin-hero"><p class="admin-overline">Siguran pristup</p><h3>Dobro došao nazad.</h3><p>Prijavi se administratorskim emailom da upravljaš kompletnim menijem.</p></div>${renderNotice()}<div class="admin-login-card"><h3>Prijava administratora</h3><p>Pristup se ne čuva u javnom index fajlu.</p><form id="adminLoginForm" class="admin-form"><div class="admin-field"><label>Email</label><input name="email" type="email" autocomplete="email" required placeholder="tvoj@email.com"></div><div class="admin-field"><label>Lozinka</label><input name="password" type="password" autocomplete="current-password" required placeholder="••••••••"></div><button class="admin-primary" type="submit">Prijavi se u administraciju</button><button class="admin-secondary" type="button" data-admin-action="reset-password">Pošalji link za novu lozinku</button></form></div>`;
+      $('#adminLoginForm').addEventListener('submit',async event=>{event.preventDefault();if(adminBusy)return;const data=new FormData(event.currentTarget);const button=event.currentTarget.querySelector('button[type=submit]');adminBusy=true;button.disabled=true;button.textContent='Prijavljujem…';try{await firebaseLib.signInWithEmailAndPassword(firebaseAuth,String(data.get('email')||'').trim(),String(data.get('password')||''));setAdminNotice('success','Prijava uspješna','Administracija je spremna.');}catch(error){setAdminNotice('error','Prijava nije uspjela','Provjeri email i lozinku.');renderAdminLogin();}finally{adminBusy=false;}});
+    }
+    const adminTabs=()=>`<div class="admin-tabs"><button class="admin-tab ${adminView==='dashboard'?'active':''}" data-admin-view="dashboard">Pregled</button><button class="admin-tab ${adminView==='menu'?'active':''}" data-admin-view="menu">Jela</button><button class="admin-tab ${adminView==='structure'?'active':''}" data-admin-view="structure">Kategorije</button><button class="admin-tab ${adminView==='settings'?'active':''}" data-admin-view="settings">Informacije</button><button class="admin-tab ${adminView==='backup'?'active':''}" data-admin-view="backup">Rezerva</button></div>`;
+    function renderAdminDashboard(){
+      refreshCounts(); const all=menu.flatMap(section=>section.groups.flatMap(group=>group.items)); const active=all.filter(item=>item.active!==false); let page='';
+      if(adminEditor?.type==='dish') page=renderDishEditor();
+      else if(adminEditor?.type==='category') page=renderCategoryEditor();
+      else if(adminEditor?.type==='group') page=renderGroupEditor();
+      else if(adminView==='menu') page=renderMenuManager();
+      else if(adminView==='structure') page=renderStructureManager();
+      else if(adminView==='settings') page=renderSettingsManager();
+      else if(adminView==='backup') page=renderBackupManager();
+      else page=`<div class="admin-stats"><div class="admin-stat"><b>${active.length}</b><span>aktivnih jela</span></div><div class="admin-stat"><b>${menu.length}</b><span>kategorija</span></div><div class="admin-stat"><b>${all.length-active.length}</b><span>skriveno danas</span></div></div><div class="admin-toolbar"><button class="admin-primary" data-admin-action="new-dish">＋ Dodaj jelo</button><button class="admin-secondary" data-admin-action="new-category">＋ Dodaj kategoriju</button></div><div class="admin-card"><h3>Promjene uživo</h3><p class="subcopy">Svaka sačuvana izmjena se automatski pojavi gostima na istom QR linku. Pansion meni namjerno nema pojedinačne cijene.</p></div>`;
+      adminContent.innerHTML=`<div class="admin-hero"><p class="admin-overline">Administracija menija</p><h3>Potpuna kontrola bez koda.</h3><p>Upravljaj jelima, cijenama, kategorijama, preporukama, slikama i informacijama za goste.</p></div>${renderNotice()}<div class="admin-signed"><span><b>Prijavljen administrator</b><small>${esc(firebaseUser?.email||'Firebase nalog')}</small></span><button class="admin-secondary" data-admin-action="logout">Odjavi se</button></div>${adminTabs()}${page}`;
+    }
+    function iconButton(label, action, attrs=''){ return `<button class="admin-mini" type="button" data-admin-action="${esc(action)}" ${attrs} aria-label="${esc(label)}" title="${esc(label)}">${esc(label)}</button>`; }
+    function renderMenuManager(){
+      return `<div class="admin-toolbar"><button class="admin-primary" data-admin-action="new-dish">＋ Dodaj novo jelo</button><button class="admin-secondary" data-admin-view="structure">Uredi kategorije</button></div><div class="admin-section-label"><span>Sva jela</span><small>Zvjezdica = preporuka kuće</small></div><div class="admin-menu-list">${menu.map(section=>`<section class="admin-category"><div class="admin-category-head"><strong>${esc(section.icon||'•')} ${esc(section.bs)}</strong><span>${section.groups.flatMap(g=>g.items).length} stavki</span></div>${section.groups.map(group=>`<div class="admin-group-row"><div class="admin-group-main"><strong>${esc(group.bs)}</strong><small>${group.items.length} jela</small></div></div>${group.items.map((item,index)=>`<div class="admin-dish-row"><span class="admin-status ${item.active===false?'off':''}" title="${item.active===false?'Skriveno':'Aktivno'}"></span><div class="admin-dish-main"><strong>${esc(item.bs)}${item.featured?' · ★':''}</strong><small>${esc(item.detailBs||item.en||'')}</small></div><span class="admin-price">${item.priceMode==='pension'?'Pansion':esc(priceText(item))}</span><div class="admin-row-actions">${iconButton('↑','move-dish',`data-section-id="${esc(section.id)}" data-group-id="${esc(group.id)}" data-item-id="${esc(item.id)}" data-direction="up" ${index===0?'disabled':''}`)}${iconButton('↓','move-dish',`data-section-id="${esc(section.id)}" data-group-id="${esc(group.id)}" data-item-id="${esc(item.id)}" data-direction="down" ${index===group.items.length-1?'disabled':''}`)}<button class="admin-edit" data-admin-action="edit-dish" data-item-id="${esc(item.id)}">Uredi</button></div></div>`).join('')}`).join('')}</section>`).join('')}</div>`;
+    }
+    function renderStructureManager(){
+      return `<div class="admin-toolbar"><button class="admin-primary" data-admin-action="new-category">＋ Nova kategorija</button><button class="admin-secondary" data-admin-action="new-group-prompt">＋ Nova podkategorija</button></div><div class="admin-section-label"><span>Kategorije i podkategorije</span><small>Redoslijed ovdje je redoslijed za gosta</small></div><div class="admin-stack">${menu.map((section,index)=>`<section class="admin-structure-card"><div class="admin-structure-head"><span>${esc(section.icon||'•')}</span><div style="min-width:0;flex:1"><strong>${esc(section.bs)}</strong><small>${section.groups.reduce((sum,g)=>sum+g.items.length,0)} stavki · ${section.groups.length} podkategorija</small></div><div class="admin-row-actions">${iconButton('↑','move-category',`data-section-id="${esc(section.id)}" data-direction="up" ${index===0?'disabled':''}`)}${iconButton('↓','move-category',`data-section-id="${esc(section.id)}" data-direction="down" ${index===menu.length-1?'disabled':''}`)}<button class="admin-edit" data-admin-action="edit-category" data-section-id="${esc(section.id)}">Uredi</button>${iconButton('×','delete-category',`data-section-id="${esc(section.id)}"`)}</div></div>${section.groups.map((group,gIndex)=>`<div class="admin-group-row"><div class="admin-group-main"><strong>${esc(group.bs)}</strong><small>${group.items.length} jela</small></div><div class="admin-row-actions">${iconButton('↑','move-group',`data-section-id="${esc(section.id)}" data-group-id="${esc(group.id)}" data-direction="up" ${gIndex===0?'disabled':''}`)}${iconButton('↓','move-group',`data-section-id="${esc(section.id)}" data-group-id="${esc(group.id)}" data-direction="down" ${gIndex===section.groups.length-1?'disabled':''}`)}<button class="admin-edit" data-admin-action="edit-group" data-section-id="${esc(section.id)}" data-group-id="${esc(group.id)}">Uredi</button>${iconButton('×','delete-group',`data-section-id="${esc(section.id)}" data-group-id="${esc(group.id)}"`)}</div></div>`).join('')}<div style="padding:10px 12px"><button class="admin-secondary" data-admin-action="new-group" data-section-id="${esc(section.id)}">＋ Dodaj podkategoriju</button></div></section>`).join('')}</div>`;
+    }
+    function inputField(label,name,value='',opts={}){ const type=opts.type||'text'; const kind=type==='textarea'?`<textarea name="${esc(name)}" ${opts.required?'required':''} placeholder="${esc(opts.placeholder||'')}">${esc(value||'')}</textarea>`:`<input class="${opts.className||''}" name="${esc(name)}" type="${esc(type)}" value="${esc(value||'')}" ${opts.required?'required':''} placeholder="${esc(opts.placeholder||'')}">`; return `<div class="admin-field ${opts.wide?'wide':''}"><label>${esc(label)}</label>${kind}</div>`; }
+    function groupOptions(selected=''){ return menu.flatMap(section=>(section.groups||[]).map(group=>`<option value="${esc(section.id+'::'+group.id)}" ${section.id+'::'+group.id===selected?'selected':''}>${esc(section.icon||'')} ${esc(section.bs)} — ${esc(group.bs)}</option>`)).join(''); }
+    function renderDishEditor(){
+      const current=adminEditor.id ? findDishById(adminEditor.id) : null;
+      const item=current?current.item:{id:newId('dish'),active:true,featured:false,price:'',priceMode:'standard',bs:'',al:'',en:'',detailBs:'',detailAl:'',detailEn:'',badgeBs:'',badgeAl:'',badgeEn:'',imageUrl:'',imagePath:''};
+      const selectedTarget=current ? current.section.id+'::'+current.group.id : (menu[0] && menu[0].groups[0] ? menu[0].id+'::'+menu[0].groups[0].id : '');
+      const photo=item.imageUrl?`<div class="admin-photo-preview"><img src="${esc(item.imageUrl)}" alt="${esc(item.bs||'Fotografija jela')}"><span>Trenutna fotografija jela.</span></div><label class="admin-check"><input name="removeImage" type="checkbox"> Ukloni trenutnu fotografiju</label>`:'';
+      return `<div class="admin-card"><div class="admin-editor-head"><button class="admin-back" data-admin-action="close-editor">← Nazad</button><h3>${current?'Uredi jelo':'Dodaj novo jelo'}</h3></div><p class="subcopy">Za Pension meni cijena se automatski ne prikazuje, bez obzira na ovo polje.</p><form id="dishEditorForm" class="admin-form"><div class="admin-form-grid"><div class="admin-field wide"><label>Kategorija i podkategorija</label><select name="target" required>${groupOptions(selectedTarget)}</select></div>${inputField('Cijena (€)','price',item.price,{wide:true,placeholder:'npr. 12,00'})}${inputField('Naziv · Crnogorski','bs',item.bs,{required:true,wide:true,placeholder:'npr. Grebajski sto'})}${inputField('Naziv · Albanski','al',item.al,{wide:true})}${inputField('Naziv · English','en',item.en,{wide:true})}${inputField('Opis / normativ · Crnogorski','detailBs',item.detailBs,{type:'textarea',wide:true})}${inputField('Opis / normativ · Albanski','detailAl',item.detailAl,{type:'textarea',wide:true})}${inputField('Opis / normativ · English','detailEn',item.detailEn,{type:'textarea',wide:true})}${inputField('Oznaka · Crnogorski','badgeBs',item.badgeBs,{wide:true,placeholder:'npr. Domaće jelo'})}${inputField('Oznaka · Albanski','badgeAl',item.badgeAl,{wide:true})}${inputField('Oznaka · English','badgeEn',item.badgeEn,{wide:true})}<div class="admin-field wide"><label>Fotografija jela</label><input class="admin-file" name="image" type="file" accept="image/jpeg,image/png,image/webp"><small class="subcopy">JPG, PNG ili WEBP, do 8 MB. Slika se vidi tek kada gost otvori detalje jela.</small></div></div>${photo}<label class="admin-check"><input name="featured" type="checkbox" ${item.featured===true?'checked':''}> Prikaži ovo jelo u Preporuci kuće</label><label class="admin-check"><input name="active" type="checkbox" ${item.active!==false?'checked':''}> Prikaži gostima (isključi kada ga danas nema)</label><div class="admin-inline-actions"><button class="admin-primary" type="submit">Sačuvaj promjene</button>${current?'<button class="admin-danger" type="button" data-admin-action="delete-dish">Obriši jelo</button>':''}</div></form></div>`;
+    }
+    function renderCategoryEditor(){
+      const current=adminEditor.id ? findSection(adminEditor.id) : null;
+      const section=current||{id:newId('category'),icon:'🍽️',bs:'',al:'',en:''};
+      const firstGroupFields = current ? '' : [
+        inputField('Prva podkategorija · Crnogorski','firstGroupBs',section.bs,{required:true,wide:true}),
+        inputField('Prva podkategorija · Albanski','firstGroupAl',section.al,{wide:true}),
+        inputField('Prva podkategorija · English','firstGroupEn',section.en,{wide:true})
+      ].join('');
+      return `<div class="admin-card"><div class="admin-editor-head"><button class="admin-back" data-admin-action="close-editor">← Nazad</button><h3>${current?'Uredi kategoriju':'Nova kategorija'}</h3></div><p class="subcopy">Nova kategorija dobija i prvu podkategoriju. Kasnije možeš dodavati koliko želiš.</p><form id="categoryEditorForm" class="admin-form"><div class="admin-form-grid">${inputField('Ikonica','icon',section.icon,{required:true,placeholder:'npr. 🍽️'})}${inputField('Naziv · Crnogorski','bs',section.bs,{required:true})}${inputField('Naziv · Albanski','al',section.al,{wide:true})}${inputField('Naziv · English','en',section.en,{wide:true})}${firstGroupFields}</div><button class="admin-primary" type="submit">Sačuvaj kategoriju</button></form></div>`;
+    }
+    function renderGroupEditor(){
+      const found=adminEditor.sectionId && adminEditor.groupId ? findGroup(adminEditor.sectionId,adminEditor.groupId) : null;
+      const group=found?found.group:{id:newId('group'),bs:'',al:'',en:''};
+      const sectionId=found?found.section.id:(adminEditor.sectionId||menu[0]?.id||'');
+      return `<div class="admin-card"><div class="admin-editor-head"><button class="admin-back" data-admin-action="close-editor">← Nazad</button><h3>${found?'Uredi podkategoriju':'Nova podkategorija'}</h3></div><form id="groupEditorForm" class="admin-form"><div class="admin-form-grid"><div class="admin-field wide"><label>Kategorija</label><select name="sectionId">${menu.map(section=>`<option value="${esc(section.id)}" ${section.id===sectionId?'selected':''}>${esc(section.icon||'')} ${esc(section.bs)}</option>`).join('')}</select></div>${inputField('Naziv · Crnogorski','bs',group.bs,{required:true,wide:true})}${inputField('Naziv · Albanski','al',group.al,{wide:true})}${inputField('Naziv · English','en',group.en,{wide:true})}</div><button class="admin-primary" type="submit">Sačuvaj podkategoriju</button></form></div>`;
+    }
+    function renderSettingsManager(){
+      const info={...defaultSiteInfo(),...siteInfo};
+      return `<div class="admin-card"><h3>Informacije za goste</h3><p class="subcopy">Ove promjene su uživo na javnom meniju.</p><form id="settingsForm" class="admin-form"><div class="admin-form-grid">${inputField('Naziv restorana','restaurantName',info.restaurantName,{required:true,wide:true})}${inputField('Lokacija / podnaslov','location',info.location,{wide:true})}${inputField('Instagram link','instagramUrl',info.instagramUrl,{type:'url',wide:true})}${inputField('Dnevna poruka · Crnogorski','guestNoticeBs',info.guestNoticeBs,{type:'textarea',wide:true})}${inputField('Dnevna poruka · Albanski','guestNoticeAl',info.guestNoticeAl,{type:'textarea',wide:true})}${inputField('Dnevna poruka · English','guestNoticeEn',info.guestNoticeEn,{type:'textarea',wide:true})}</div><div class="admin-section-label"><span>Smještaj na dnu menija</span><small>Viber i WhatsApp dugmad</small></div><div class="admin-form-grid">${inputField('Naslov · Crnogorski','stayTitleBs',info.stayTitleBs,{type:'textarea',wide:true})}${inputField('Tekst · Crnogorski','stayTextBs',info.stayTextBs,{type:'textarea',wide:true})}${inputField('Naslov · Albanski','stayTitleAl',info.stayTitleAl,{type:'textarea',wide:true})}${inputField('Tekst · Albanski','stayTextAl',info.stayTextAl,{type:'textarea',wide:true})}${inputField('Naslov · English','stayTitleEn',info.stayTitleEn,{type:'textarea',wide:true})}${inputField('Tekst · English','stayTextEn',info.stayTextEn,{type:'textarea',wide:true})}${inputField('Viber broj u međunarodnom formatu','viberNumber',info.viberNumber,{wide:true,placeholder:'npr. 38267623634'})}${inputField('WhatsApp broj u međunarodnom formatu','whatsappNumber',info.whatsappNumber,{wide:true,placeholder:'npr. 38267623634'})}</div><button class="admin-primary" type="submit">Sačuvaj informacije</button></form></div>`;
+    }
+    function renderBackupManager(){ return `<div class="admin-card admin-backup"><h3>Rezervna kopija menija</h3><p class="subcopy">Preuzmi kopiju prije većih izmjena. Vraćanje kopije mijenja cijeli meni, kategorije, preporuke i informacije za goste.</p><button class="admin-primary" data-admin-action="download-backup">Preuzmi rezervnu kopiju</button><div class="admin-field"><label>Vrati rezervnu kopiju</label><input id="backupFile" class="admin-file" type="file" accept="application/json,.json"><small class="subcopy">Izaberi JSON fajl koji je ovaj panel ranije preuzeo.</small></div><button class="admin-danger" data-admin-action="restore-backup">Vrati izabranu kopiju</button></div>`; }
+
+    function adminMenuPayload(){ refreshCounts(); return {schemaVersion:1,menu:clone(menu),siteInfo:clone({...defaultSiteInfo(),...siteInfo})}; }
+    async function saveMenuState(success='Promjene su sačuvane'){
+      if(!firebaseDb || !firebaseUser) throw new Error('Nema administratorske prijave');
+      adminBusy=true;
+      try{ await firebaseLib.setDoc(firebaseLib.doc(firebaseDb,'menu','current'),{...adminMenuPayload(),updatedAt:firebaseLib.serverTimestamp(),updatedBy:firebaseUser.email||''}); setAdminNotice('success','Sačuvano',success); }
+      finally{ adminBusy=false; }
+    }
+    function moveItem(array,index,direction){ const target=index+(direction==='up'?-1:1); if(target<0||target>=array.length)return false; [array[index],array[target]]=[array[target],array[index]]; return true; }
+    async function uploadDishImage(file,dishId){
+      if(!firebaseStorage) throw new Error('Firebase Storage nije podešen. Dodaj storageBucket u firebase-config.js i aktiviraj Storage.');
+      if(!file || !file.type.startsWith('image/')) throw new Error('Izaberi JPG, PNG ili WEBP fotografiju.');
+      if(file.size>8*1024*1024) throw new Error('Fotografija je veća od 8 MB.');
+      const ext=(file.name.split('.').pop()||'jpg').replace(/[^a-zA-Z0-9]/g,'')||'jpg';
+      const path=`menu-images/${dishId}/${Date.now()}-${slug(file.name)}.${ext}`;
+      const ref=firebaseLib.ref(firebaseStorage,path);
+      await firebaseLib.uploadBytes(ref,file,{contentType:file.type,cacheControl:'public,max-age=31536000'});
+      return {imageUrl:await firebaseLib.getDownloadURL(ref),imagePath:path};
+    }
+    async function deleteStoragePath(path){ if(!path || !firebaseStorage) return; try{ await firebaseLib.deleteObject(firebaseLib.ref(firebaseStorage,path)); }catch(error){ console.warn('Slika nije obrisana iz Storage-a:',error); } }
+    async function saveDish(form){
+      const data=new FormData(form); const target=String(data.get('target')||'').split('::'); const foundGroup=findGroup(target[0],target[1]); if(!foundGroup) throw new Error('Izaberi kategoriju i podkategoriju.');
+      const existing=adminEditor.id ? findDishById(adminEditor.id) : null; const dishId=existing?existing.item.id:newId('dish',String(data.get('bs')||'')); const isPension=foundGroup.section.id==='pension-menu';
+      const fields={id:dishId,bs:String(data.get('bs')||'').trim(),al:String(data.get('al')||'').trim(),en:String(data.get('en')||'').trim(),priceMode:isPension?'pension':'standard',price:isPension?'':String(data.get('price')||'').trim(),detailBs:String(data.get('detailBs')||'').trim(),detailAl:String(data.get('detailAl')||'').trim(),detailEn:String(data.get('detailEn')||'').trim(),badgeBs:String(data.get('badgeBs')||'').trim(),badgeAl:String(data.get('badgeAl')||'').trim(),badgeEn:String(data.get('badgeEn')||'').trim(),featured:data.get('featured')==='on',active:data.get('active')==='on',imageUrl:existing?existing.item.imageUrl||'':'',imagePath:existing?existing.item.imagePath||'':''};
+      if(!fields.bs) throw new Error('Naziv jela na crnogorskom je obavezan.');
+      if(!isPension && !fields.price) throw new Error('Cijena je obavezna osim za Pension meni.');
+      const file=form.querySelector('input[name="image"]')?.files?.[0]; const removeImage=data.get('removeImage')==='on'; const oldPath=existing?.item?.imagePath||'';
+      if(file){ const uploaded=await uploadDishImage(file,dishId); fields.imageUrl=uploaded.imageUrl;fields.imagePath=uploaded.imagePath; }
+      else if(removeImage){fields.imageUrl='';fields.imagePath='';}
+      if(existing){ existing.group.items=existing.group.items.filter(item=>item.id!==existing.item.id); }
+      foundGroup.group.items.push(fields);
+      await saveMenuState('Jelo je ažurirano u javnom meniju.');
+      if((file||removeImage) && oldPath && oldPath!==fields.imagePath) deleteStoragePath(oldPath);
+      adminEditor=null;adminView='menu';redrawPublicMenu();renderAdminDashboard();
+    }
+    async function saveCategory(form){ const data=new FormData(form); const existing=adminEditor.id?findSection(adminEditor.id):null; const fields={id:existing?existing.id:newId('category',String(data.get('bs')||'')),icon:String(data.get('icon')||'🍽️').trim(),bs:String(data.get('bs')||'').trim(),al:String(data.get('al')||'').trim(),en:String(data.get('en')||'').trim()}; if(!fields.bs) throw new Error('Naziv kategorije na crnogorskom je obavezan.'); if(existing) Object.assign(existing,fields); else {const group={id:newId('group',String(data.get('firstGroupBs')||fields.bs)),bs:String(data.get('firstGroupBs')||fields.bs).trim(),al:String(data.get('firstGroupAl')||fields.al).trim(),en:String(data.get('firstGroupEn')||fields.en).trim(),items:[]};menu.push({...fields,groups:[group]});} await saveMenuState('Kategorija je sačuvana.');adminEditor=null;adminView='structure';redrawPublicMenu();renderAdminDashboard(); }
+    async function saveGroup(form){ const data=new FormData(form); const targetSection=findSection(String(data.get('sectionId')||'')); if(!targetSection) throw new Error('Izaberi kategoriju.'); const existing=adminEditor.sectionId&&adminEditor.groupId?findGroup(adminEditor.sectionId,adminEditor.groupId):null; const fields={id:existing?existing.group.id:newId('group',String(data.get('bs')||'')),bs:String(data.get('bs')||'').trim(),al:String(data.get('al')||'').trim(),en:String(data.get('en')||'').trim(),items:existing?existing.group.items:[]}; if(!fields.bs) throw new Error('Naziv podkategorije na crnogorskom je obavezan.'); if(existing){existing.section.groups=existing.section.groups.filter(group=>group.id!==existing.group.id);}targetSection.groups.push(fields); await saveMenuState('Podkategorija je sačuvana.');adminEditor=null;adminView='structure';redrawPublicMenu();renderAdminDashboard(); }
+    async function saveSettings(form){ const data=new FormData(form); const fields={}; for(const [key,value] of data.entries()) fields[key]=String(value||'').trim(); siteInfo={...defaultSiteInfo(),...siteInfo,...fields}; await saveMenuState('Informacije za goste su ažurirane.');applySiteInfo();renderAdminDashboard(); }
+    async function removeDish(){ const found=adminEditor?.id&&findDishById(adminEditor.id); if(!found)return; if(!confirm(`Obrisati jelo: ${found.item.bs}?`))return; const path=found.item.imagePath||''; found.group.items=found.group.items.filter(item=>item.id!==found.item.id); await saveMenuState('Jelo je obrisano.'); if(path) deleteStoragePath(path);adminEditor=null;adminView='menu';redrawPublicMenu();renderAdminDashboard(); }
+    async function removeCategory(sectionId){ const section=findSection(sectionId); if(!section)return; const count=section.groups.reduce((sum,g)=>sum+g.items.length,0); if(!confirm(`Obrisati kategoriju “${section.bs}” i svih ${count} stavki?`))return; const paths=section.groups.flatMap(g=>g.items.map(i=>i.imagePath).filter(Boolean));menu=menu.filter(item=>item.id!==sectionId);await saveMenuState('Kategorija je obrisana.');paths.forEach(deleteStoragePath);adminView='structure';redrawPublicMenu();renderAdminDashboard(); }
+    async function removeGroup(sectionId,groupId){ const found=findGroup(sectionId,groupId);if(!found)return; if(!confirm(`Obrisati podkategoriju “${found.group.bs}” i svih ${found.group.items.length} stavki?`))return; const paths=found.group.items.map(i=>i.imagePath).filter(Boolean);found.section.groups=found.section.groups.filter(group=>group.id!==groupId);if(!found.section.groups.length)found.section.groups.push({id:newId('group','ponuda'),...defaultGroupTitle(found.section),items:[]});await saveMenuState('Podkategorija je obrisana.');paths.forEach(deleteStoragePath);adminView='structure';redrawPublicMenu();renderAdminDashboard(); }
+    async function downloadBackup(){ const blob=new Blob([JSON.stringify(adminMenuPayload(),null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`katun-maja-karanfil-meni-${new Date().toISOString().slice(0,10)}.json`;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url); }
+    async function restoreBackup(){ const input=$('#backupFile');const file=input?.files?.[0];if(!file)throw new Error('Prvo izaberi rezervnu kopiju.');let data;try{data=JSON.parse(await file.text());}catch(error){throw new Error('Ovaj fajl nije ispravna JSON rezervna kopija.');}if(!Array.isArray(data.menu))throw new Error('Rezervna kopija nema meni.');if(!confirm('Vraćanje kopije će zamijeniti trenutni meni. Nastaviti?'))return;menu=ensureMenuSchema(normalizeMenu(data.menu));siteInfo={...defaultSiteInfo(),...(data.siteInfo||{})};await saveMenuState('Rezervna kopija je vraćena.');adminView='dashboard';redrawPublicMenu();renderAdminDashboard(); }
+
+    adminOpen.addEventListener('click',openAdminPanel); adminClose.addEventListener('click',closeAdminPanel); adminOverlay.addEventListener('click',event=>{if(event.target===adminOverlay)closeAdminPanel();});
+    adminContent.addEventListener('click',async event=>{
+      const view=event.target.closest('[data-admin-view]');if(view){adminView=view.dataset.adminView;adminEditor=null;adminNotice=null;renderAdminDashboard();return;}
+      const action=event.target.closest('[data-admin-action]');if(!action)return; const type=action.dataset.adminAction;
+      try{
+        if(type==='logout'){await firebaseLib.signOut(firebaseAuth);adminEditor=null;adminView='dashboard';adminNotice=null;renderAdmin();return;}
+        if(type==='reset-password'){const email=$('#adminLoginForm input[name=email]')?.value?.trim();if(!email)throw new Error('Prvo upiši email adresu.');await firebaseLib.sendPasswordResetEmail(firebaseAuth,email);setAdminNotice('success','Link je poslat','Provjeri svoj email i postavi novu lozinku.');renderAdminLogin();return;}
+        if(type==='new-dish'){adminEditor={type:'dish',id:null};adminView='menu';renderAdminDashboard();return;}
+        if(type==='edit-dish'){adminEditor={type:'dish',id:action.dataset.itemId};adminView='menu';renderAdminDashboard();return;}
+        if(type==='delete-dish'){await removeDish();return;}
+        if(type==='new-category'){adminEditor={type:'category',id:null};adminView='structure';renderAdminDashboard();return;}
+        if(type==='edit-category'){adminEditor={type:'category',id:action.dataset.sectionId};adminView='structure';renderAdminDashboard();return;}
+        if(type==='delete-category'){await removeCategory(action.dataset.sectionId);return;}
+        if(type==='new-group'){adminEditor={type:'group',sectionId:action.dataset.sectionId,groupId:null};adminView='structure';renderAdminDashboard();return;}
+        if(type==='new-group-prompt'){const section=menu[0];if(!section)throw new Error('Prvo dodaj kategoriju.');adminEditor={type:'group',sectionId:section.id,groupId:null};adminView='structure';renderAdminDashboard();return;}
+        if(type==='edit-group'){adminEditor={type:'group',sectionId:action.dataset.sectionId,groupId:action.dataset.groupId};adminView='structure';renderAdminDashboard();return;}
+        if(type==='delete-group'){await removeGroup(action.dataset.sectionId,action.dataset.groupId);return;}
+        if(type==='close-editor'){adminEditor=null;renderAdminDashboard();return;}
+        if(type==='move-category'){const index=menu.findIndex(section=>section.id===action.dataset.sectionId);if(moveItem(menu,index,action.dataset.direction)){await saveMenuState('Redoslijed kategorija je sačuvan.');redrawPublicMenu();renderAdminDashboard();}return;}
+        if(type==='move-group'){const section=findSection(action.dataset.sectionId);const index=section?.groups.findIndex(group=>group.id===action.dataset.groupId)??-1;if(section&&moveItem(section.groups,index,action.dataset.direction)){await saveMenuState('Redoslijed podkategorija je sačuvan.');redrawPublicMenu();renderAdminDashboard();}return;}
+        if(type==='move-dish'){const found=findGroup(action.dataset.sectionId,action.dataset.groupId);const index=found?.group.items.findIndex(item=>item.id===action.dataset.itemId)??-1;if(found&&moveItem(found.group.items,index,action.dataset.direction)){await saveMenuState('Redoslijed jela je sačuvan.');redrawPublicMenu();renderAdminDashboard();}return;}
+        if(type==='download-backup'){await downloadBackup();return;}
+        if(type==='restore-backup'){await restoreBackup();return;}
+      }catch(error){setAdminNotice('error','Nije izvršeno',error.message||'Pokušaj ponovo.'); if(firebaseUser)renderAdminDashboard();else renderAdminLogin();}
+    });
+    adminContent.addEventListener('submit',async event=>{
+      event.preventDefault(); try{ if(event.target.id==='dishEditorForm')await saveDish(event.target); if(event.target.id==='categoryEditorForm')await saveCategory(event.target); if(event.target.id==='groupEditorForm')await saveGroup(event.target); if(event.target.id==='settingsForm')await saveSettings(event.target); }catch(error){setAdminNotice('error','Nije sačuvano',error.message||'Provjeri podatke i pokušaj ponovo.');renderAdminDashboard();}
+    });
+    document.addEventListener('keydown',event=>{if(event.key==='Escape'&&adminOverlay.classList.contains('open'))closeAdminPanel();});
+
+    // Always fall back to Montenegro if an old saved language from a previous version exists.
+    if (!['bs','al','en'].includes(lang)) lang = 'bs';
+    localStorage.setItem('kmkMenuLanguage', lang);
+    menu=ensureMenuSchema(menu); siteInfo={...defaultSiteInfo(),...siteInfo}; renderStatic();renderHome();loadInstagramFeed();startFirebasePublic();
+  </script>
+</body>
+</html>
